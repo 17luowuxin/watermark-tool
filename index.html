@@ -266,7 +266,7 @@ body{
         </div>
         <div class="slider-row">
           <div class="slider-head"><span class="slider-title">不透明度</span><span class="slider-val" id="opacityVal">15%</span></div>
-          <input type="range" class="slider" id="opacitySlider" min="1" max="100" value="15">
+          <input type="range" class="slider" id="opacitySlider" min="5" max="100" value="15">
         </div>
         <div class="slider-row">
           <div class="slider-head"><span class="slider-title">字号</span><span class="slider-val" id="sizeVal">24px</span></div>
@@ -360,7 +360,6 @@ body{
       </div>
       <div class="pbar" id="pbar"><div class="pfill" id="pfill"></div></div>
       <div class="btn-row">
-        <button class="btn btn-s" id="btnPreview">预览首张</button>
         <button class="btn btn-p" id="btnExport" disabled>批量导出</button>
       </div>
     </div>
@@ -557,36 +556,41 @@ async function detectFaces(img,orientation){
 }
 /* ===== Text Effect ===== */
 function applyTextEffect(ctx,txt,x,y,opts){
-  const{effect,fontSize:fs,wmColor}=opts;const sz=fs*(ctx.canvas.width/400);
-  if(effect.shadow3d){const depth=(effect.depth||6)*(ctx.canvas.width/400);const dc=effect.depthColor||'rgba(80,60,100,0.35)';ctx.fillStyle=dc;for(let i=depth;i>=1;i-=0.5){ctx.fillText(txt,x+i*0.7,y+i*0.7);}}
-  if(effect.shadow){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*(sz/24);ctx.shadowOffsetY=sh.oy*(sz/24);ctx.shadowBlur=sh.blur*(sz/24);ctx.shadowColor=sh.color;break;}}
-  if(effect.fillGrad){const grad=ctx.createLinearGradient(x-50*(sz/24),y,x+50*(sz/24),y);const stops=effect.fillGrad;stops.forEach((s,i)=>grad.addColorStop(i/(stops.length-1),s.c));ctx.fillStyle=grad;}
+  const{effect,fontSize:fs,wmColor}=opts;
+  // Scale factors relative to font size (no canvas width scaling)
+  const sc=fs/24;
+  if(effect.shadow3d){const depth=effect.depth||6;const dc=effect.depthColor||'rgba(80,60,100,0.35)';ctx.fillStyle=dc;for(let i=depth*sc;i>=1;i-=0.5){ctx.fillText(txt,x+i*0.7,y+i*0.7);}}
+  if(effect.shadow){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*sc;ctx.shadowOffsetY=sh.oy*sc;ctx.shadowBlur=sh.blur*sc;ctx.shadowColor=sh.color;break;}}
+  if(effect.fillGrad){const grad=ctx.createLinearGradient(x-50*sc,y,x+50*sc,y);const stops=effect.fillGrad;stops.forEach((s,i)=>grad.addColorStop(i/(stops.length-1),s.c));ctx.fillStyle=grad;}
   else if(effect.fill)ctx.fillStyle=effect.fill;
   else if(effect.stampMode)ctx.fillStyle=wmColor||'#c0392b';
   else ctx.fillStyle=wmColor;
   ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;
-  if(effect.stroke){ctx.strokeStyle=effect.stroke.color;ctx.lineWidth=effect.stroke.width*(sz/24);ctx.lineJoin='round';if(effect.stampMode){ctx.strokeStyle=wmColor||'#c0392b';ctx.lineWidth=1.5*(sz/24);}ctx.strokeText(txt,x,y);}
-  if(effect.id==='glow'){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*(sz/24);ctx.shadowOffsetY=sh.oy*(sz/24);ctx.shadowBlur=sh.blur*(sz/24);ctx.shadowColor=sh.color;}ctx.fillStyle=effect.fillGrad?undefined:(effect.fill||wmColor);ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;}
+  if(effect.stroke){ctx.strokeStyle=effect.stroke.color;ctx.lineWidth=effect.stroke.width*sc;ctx.lineJoin='round';if(effect.stampMode){ctx.strokeStyle=wmColor||'#c0392b';ctx.lineWidth=1.5*sc;}ctx.strokeText(txt,x,y);}
+  if(effect.id==='glow'){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*sc;ctx.shadowOffsetY=sh.oy*sc;ctx.shadowBlur=sh.blur*sc;ctx.shadowColor=sh.color;}ctx.fillStyle=effect.fillGrad?undefined:(effect.fill||wmColor);ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;}
 }
 /* ===== Watermark Render ===== */
 function drawTextWM(wx,w,h,txt,op,fs,an,mode,opts){
   wx.globalAlpha=op/100;
-  const sz=fs*(w/400);
-  const fontStr=`${sz}px ${opts.font?opts.font.family:'-apple-system,sans-serif'}`;
+  // Font size: use actual pixel size, no canvas scaling
+  const fontStr=`${fs}px ${opts.font?opts.font.family:'-apple-system,sans-serif'}`;
   wx.font=fontStr;wx.textAlign='center';wx.textBaseline='middle';
   if(mode==='tile'){
     wx.save();wx.translate(w/2,h/2);wx.rotate(an*Math.PI/180);
-    const tw=wx.measureText(txt).width,gx=tw+60*(w/400),gy=sz*3.5,diag=Math.sqrt(w*w+h*h);
-    for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){applyTextEffect(wx,txt,x,y,opts);}
+    const tw=wx.measureText(txt).width;
+    // Tight spacing: text width + small gap
+    const gapX=Math.max(tw*0.3, 20);
+    const gx=tw+gapX;
+    const gy=fs*2.2;
+    const diag=Math.sqrt(w*w+h*h);
+    for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){applyTextEffect(wx,txt,x,y,{...opts,fontSize:fs});}
     wx.restore();
   }else if(mode==='center'){
-    applyTextEffect(wx,txt,w/2,h/2,opts);
+    applyTextEffect(wx,txt,w/2,h/2,{...opts,fontSize:fs});
   }else if(mode==='stretch'){
-    // Stretch: single large text filling the canvas
-    const bigSz=Math.min(w,h)*0.8;
-    const bigFont=`${bigSz}px ${opts.font?opts.font.family:'-apple-system,sans-serif'}`;
-    wx.font=bigFont;
-    applyTextEffect(wx,txt,w/2,h/2,{...opts,fontSize:bigSz/(w/400)});
+    // Single large text covering the canvas
+    const bigSz=Math.min(w,h)*0.5;
+    applyTextEffect(wx,txt,w/2,h/2,{...opts,fontSize:bigSz});
   }
 }
 function drawImageWM(wx,w,h,wmImg,op,fill,blend){
