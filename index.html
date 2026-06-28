@@ -526,7 +526,7 @@ async function loadModels(){
   setStatus('加载检测模型...',false);
   try{
     console.log('[Face] Loading tinyFaceDetector...');
-    await faceapi.nets.tinyFaceDetector.loadFromUri('https://x.com/m');
+    await faceapi.nets.tinyFaceDetector.loadFromUri(_getModelBase());
     console.log('[Face] tinyFaceDetector loaded');
   }catch(e){
     console.error('[Face] tinyFaceDetector failed:',e);
@@ -537,7 +537,7 @@ async function loadModels(){
   setStatus('加载关键点模型...',false);
   try{
     console.log('[Face] Loading faceLandmark68...');
-    await faceapi.nets.faceLandmark68Net.loadFromUri('https://x.com/m');
+    await faceapi.nets.faceLandmark68Net.loadFromUri(_getModelBase());
     console.log('[Face] faceLandmark68 loaded');
   }catch(e){
     console.error('[Face] faceLandmark68 failed:',e);
