@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>水印工具</title>
-<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script src="https://unpkg.com/face-api.js@0.22.2/dist/face-api.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -468,6 +468,10 @@ initFontPicker();initEffectRow();
 /* ===== Models ===== */
 async function loadModels(){
   if(S.modelsLoaded)return;
+  if(typeof faceapi==='undefined'){
+    setStatus('人脸库加载失败 - 可使用其他功能',false);
+    return;
+  }
   setStatus('加载人脸模型中...',false);
   const urls=[
     window.location.origin+'/watermark-tool/weights',
