@@ -315,9 +315,9 @@ body{
         </div>
         <div class="tabs-label">填充方式</div>
         <div class="fill-row" id="imgFillRow">
-          <div class="fill-opt active" data-fill="tile"><span class="fill-icon">&#9634;</span><span class="fill-label">平铺</span></div>
-          <div class="fill-opt" data-fill="center"><span class="fill-icon">&#9679;</span><span class="fill-label">居中</span></div>
+          <div class="fill-opt active" data-fill="cover"><span class="fill-icon">&#9635;</span><span class="fill-label">覆盖</span></div>
           <div class="fill-opt" data-fill="stretch"><span class="fill-icon">&#9645;</span><span class="fill-label">拉伸</span></div>
+          <div class="fill-opt" data-fill="fit"><span class="fill-icon">&#9634;</span><span class="fill-label">适应</span></div>
         </div>
         <div class="tabs-label">混合模式</div>
         <div class="tabs" id="imgBlendTabs">
@@ -445,7 +445,7 @@ const S={
   images:[],faceEnabled:true,faceMode:'auto',
   textWmEnabled:true,imgWmEnabled:false,
   wmText:'[Love]',wmImg:null,wmImgData:null,
-  textFill:'tile',imgFill:'tile',blend:'source-over',imgBlend:'source-over',
+  textFill:'tile',imgFill:'cover',blend:'source-over',imgBlend:'source-over',
   font:FONTS[0],effect:EFFECTS[0],wmColor:'#000000',
   opacity:15,fontSize:24,angle:-25,
   imgOpacity:30,
@@ -596,24 +596,24 @@ function drawTextWM(wx,w,h,txt,op,fs,an,mode,opts){
 function drawImageWM(wx,w,h,wmImg,op,fill,blend){
   wx.globalAlpha=op/100;
   if(blend&&blend!=='source-over')wx.globalCompositeOperation=blend;
-  if(fill==='center'){
-    const ratio=wmImg.naturalWidth/wmImg.naturalHeight;
-    const size=Math.min(w,h)*0.5;
+  const imgRatio=wmImg.naturalWidth/wmImg.naturalHeight;
+  const canvasRatio=w/h;
+  if(fill==='cover'){
+    // Cover: fill entire canvas, maintain aspect ratio, may crop
+    let dw,dh;
+    if(imgRatio>canvasRatio){dh=h;dw=h*imgRatio;}else{dw=w;dh=w/imgRatio;}
     wx.save();wx.translate(w/2,h/2);
-    wx.drawImage(wmImg,-size*ratio/2,-size/2,size*ratio,size);
+    wx.drawImage(wmImg,-dw/2,-dh/2,dw,dh);
     wx.restore();
   }else if(fill==='stretch'){
+    // Stretch: distort to fill canvas
     wx.drawImage(wmImg,0,0,w,h);
-  }else{
-    // tile
-    const ratio=wmImg.naturalWidth/wmImg.naturalHeight;
-    const iw=w*0.3,ih=iw/ratio;
-    const gx=iw*1.5,gy=ih*1.3;
-    wx.save();wx.translate(w/2,h/2);wx.rotate(-25*Math.PI/180);
-    const diag=Math.sqrt(w*w+h*h);
-    for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){
-      wx.drawImage(wmImg,x-iw/2,y-ih/2,iw,ih);
-    }
+  }else if(fill==='fit'){
+    // Fit: scale to fit within canvas, maintain aspect ratio, may have blank space
+    let dw,dh;
+    if(imgRatio>canvasRatio){dw=w;dh=w/imgRatio;}else{dh=h;dw=h*imgRatio;}
+    wx.save();wx.translate(w/2,h/2);
+    wx.drawImage(wmImg,-dw/2,-dh/2,dw,dh);
     wx.restore();
   }
   wx.globalCompositeOperation='source-over';
