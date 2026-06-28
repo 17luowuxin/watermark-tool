@@ -455,7 +455,7 @@ const EFFECTS=[
   {name:'默认',id:'default'},
   {name:'立体浮雕',id:'emboss',fill:'#ffffff',stroke:{color:'rgba(0,0,0,0.4)',width:2},shadow:[{ox:1,oy:1,blur:0,color:'rgba(255,255,255,0.5)'},{ox:-1,oy:-1,blur:0,color:'rgba(0,0,0,0.3)'}]},
   {name:'3D厚底',id:'thick3d',shadow3d:true,depth:6,depthColor:'rgba(80,60,100,0.35)'},
-  {name:'发光',id:'glow',shadow:[{ox:0,oy:0,blur:8,color:'rgba(168,176,240,0.8)'},{ox:0,oy:0,blur:16,color:'rgba(248,215,232,0.5)'}]},
+  {name:'发光',id:'glow',fill:'#ffffff',shadow:[{ox:0,oy:0,blur:6,color:'rgba(100,200,255,0.9)'},{ox:0,oy:0,blur:12,color:'rgba(150,220,255,0.6)'},{ox:0,oy:0,blur:20,color:'rgba(200,240,255,0.3)'}]},
   {name:'描边',id:'outline',stroke:{color:'rgba(0,0,0,0.6)',width:3}},
   {name:'投影',id:'dropshadow',shadow:[{ox:3,oy:3,blur:6,color:'rgba(0,0,0,0.35)'}]},
   {name:'印章',id:'stamp',fill:'#c0392b',stroke:{color:'#c0392b',width:2},stampMode:true},
@@ -584,24 +584,38 @@ function applyTextEffect(ctx,txt,x,y,opts){
   else ctx.fillStyle=wmColor;
   ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;
   if(effect.stroke){ctx.strokeStyle=effect.stroke.color;ctx.lineWidth=effect.stroke.width*sc;ctx.lineJoin='round';if(effect.stampMode){ctx.strokeStyle=wmColor||'#c0392b';ctx.lineWidth=1.5*sc;}ctx.strokeText(txt,x,y);}
-  if(effect.id==='glow'){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*sc;ctx.shadowOffsetY=sh.oy*sc;ctx.shadowBlur=sh.blur*sc;ctx.shadowColor=sh.color;}ctx.fillStyle=effect.fillGrad?undefined:(effect.fill||wmColor);ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;}
+  if(effect.id==='glow'){
+    const gc=effect.fill||'#ffffff';
+    for(const sh of effect.shadow){
+      ctx.shadowOffsetX=sh.ox*sc;ctx.shadowOffsetY=sh.oy*sc;
+      ctx.shadowBlur=sh.blur*sc;ctx.shadowColor=sh.color;
+      ctx.fillStyle=gc;ctx.fillText(txt,x,y);
+    }
+    ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;
+    ctx.globalAlpha=Math.min((ctx.globalAlpha||0.35)*2,1);
+    ctx.fillStyle=gc;ctx.fillText(txt,x,y);
+  }
 }
 /* ===== Watermark Render ===== */
 function drawTextWM(wx,w,h,txt,op,fs,an,density,opts){
+  // Use screen blend mode for bright glowing effect (like 七海贴图)
+  wx.globalCompositeOperation='screen';
   wx.globalAlpha=op/100;
   const fontStr=`${fs}px ${opts.font?opts.font.family:'-apple-system,sans-serif'}`;
   wx.font=fontStr;wx.textAlign='center';wx.textBaseline='middle';
-  // Always tile across entire canvas (like 七海贴图)
-  const dScale=density/10; // 10=default, lower=denser, higher=sparser
+  const dScale=density/10;
   wx.save();wx.translate(w/2,h/2);wx.rotate(an*Math.PI/180);
   const tw=wx.measureText(txt).width;
   const gapX=Math.max(tw*0.4, 30)*dScale;
   const gx=tw+gapX;
   const gy=fs*2.5*dScale;
   const diag=Math.sqrt(w*w+h*h);
-  for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){applyTextEffect(wx,txt,x,y,{...opts,fontSize:fs});}
+  const eff=opts.effect&&opts.effect.id!=='default'?opts.effect:{id:'glow',fill:'#ffffff',shadow:[{ox:0,oy:0,blur:6,color:'rgba(100,200,255,0.9)'},{ox:0,oy:0,blur:12,color:'rgba(150,220,255,0.6)'},{ox:0,oy:0,blur:20,color:'rgba(200,240,255,0.3)'}]};
+  for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){applyTextEffect(wx,txt,x,y,{...opts,effect:eff,fontSize:fs});}
   wx.restore();
+  wx.globalCompositeOperation='source-over';
 }
+
 function drawImageWM(wx,w,h,wmImg,op,fill,blend){
   wx.globalAlpha=op/100;
   if(blend&&blend!=='source-over')wx.globalCompositeOperation=blend;
