@@ -233,24 +233,7 @@ function _mkUrl(name,data,isJson){
 // Build a model directory with blob URLs
 let _modelBase=null;
 function _getModelBase(){
-  if(_modelBase)return _modelBase;
-  // We need to intercept fetch to serve our blob files
-  const origFetch=window.fetch;
-  window.fetch=function(url,opts){
-    const u=typeof url==='string'?url:url.url||'';
-    console.log('[Fetch]',u.slice(0,80));
-    if(u.includes('tiny_face_detector_model-weights_manifest'))
-      return Promise.resolve(new Response(_W.tm,{headers:{'Content-Type':'application/json'}}));
-    if(u.includes('tiny_face_detector_model-shard'))
-      return Promise.resolve(new Response(_d64(_W.ts).buffer,{headers:{'Content-Type':'application/octet-stream'}}));
-    if(u.includes('face_landmark_68_model-weights_manifest'))
-      return Promise.resolve(new Response(_W.lm,{headers:{'Content-Type':'application/json'}}));
-    if(u.includes('face_landmark_68_model-shard'))
-      return Promise.resolve(new Response(_d64(_W.ls).buffer,{headers:{'Content-Type':'application/octet-stream'}}));
-    return origFetch.apply(this,arguments);
-  };
-  _modelBase='/';
-  return _modelBase;
+  return 'https://raw.githubusercontent.com/17luowuxin/watermark-tool/main/weights';
 }
 </script>
 </head>
@@ -513,43 +496,21 @@ async function loadModels(){
     setStatus('人脸库未加载',false);
     return;
   }
-  setStatus('初始化人脸模型...',false);
+  setStatus('加载人脸模型...',false);
   try{
-    _getModelBase();
-    console.log('[Face] Model base:', _getModelBase());
+    const base='https://raw.githubusercontent.com/17luowuxin/watermark-tool/main/weights';
+    await faceapi.nets.tinyFaceDetector.loadFromUri(base);
+    await faceapi.nets.faceLandmark68Net.loadFromUri(base);
+    S.modelsLoaded=true;
+    setStatus('人脸模型已就绪',true);
+    const pending=S.images.filter(i=>i.faceDetectStatus==='pending');
+    if(pending.length)autoDetectAll();
   }catch(e){
-    console.error('[Face] Override install failed:',e);
-    setStatus('初始化失败',false);
-    return;
+    console.error('Model load error:',e);
+    setStatus('模型失败:'+(e.message||String(e)).slice(0,60),false);
   }
-  
-  setStatus('加载检测模型...',false);
-  try{
-    console.log('[Face] Loading tinyFaceDetector...');
-    await faceapi.nets.tinyFaceDetector.loadFromUri(_getModelBase());
-    console.log('[Face] tinyFaceDetector loaded');
-  }catch(e){
-    console.error('[Face] tinyFaceDetector failed:',e);
-    setStatus('检测模型失败:'+(e.message||'').slice(0,30),false);
-    return;
-  }
-  
-  setStatus('加载关键点模型...',false);
-  try{
-    console.log('[Face] Loading faceLandmark68...');
-    await faceapi.nets.faceLandmark68Net.loadFromUri(_getModelBase());
-    console.log('[Face] faceLandmark68 loaded');
-  }catch(e){
-    console.error('[Face] faceLandmark68 failed:',e);
-    setStatus('关键点模型失败',false);
-    return;
-  }
-  
-  S.modelsLoaded=true;
-  setStatus('人脸模型已就绪',true);
-  const pending=S.images.filter(i=>i.faceDetectStatus==='pending');
-  if(pending.length)autoDetectAll();
 }
+
 function setStatus(t,ok){const el=$('status');el.textContent=t;el.className='topbar-sub'+(ok?' ok':'');}
 /* ===== Face Detection ===== */
 async function detectReal(img){
