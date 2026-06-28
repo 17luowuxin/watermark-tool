@@ -276,6 +276,10 @@ body{
           <div class="slider-head"><span class="slider-title">旋转角度</span><span class="slider-val" id="angleVal">-25&deg;</span></div>
           <input type="range" class="slider" id="angleSlider" min="-90" max="90" value="-25">
         </div>
+        <div class="slider-row">
+          <div class="slider-head"><span class="slider-title">间距密度</span><span class="slider-val" id="densityVal">1.0x</span></div>
+          <input type="range" class="slider" id="densitySlider" min="5" max="30" value="10">
+        </div>
         <div class="tabs-label">混合模式</div>
         <div class="tabs" id="blendTabs">
           <div class="tab active" data-blend="source-over">覆盖</div>
@@ -389,8 +393,8 @@ body{
         <input type="range" class="slider" id="editAngleSlider" min="-90" max="90" value="-25">
       </div>
       <div class="slider-row">
-        <div class="slider-head"><span class="slider-title">间距</span><span class="slider-val" id="editSpacingVal">180px</span></div>
-        <input type="range" class="slider" id="editSpacingSlider" min="40" max="600" value="180">
+        <div class="slider-head"><span class="slider-title">间距密度</span><span class="slider-val" id="editSpacingVal">1.0x</span></div>
+        <input type="range" class="slider" id="editSpacingSlider" min="5" max="30" value="10">
       </div>
     </div>
     <div class="card">
@@ -441,7 +445,7 @@ const S={
   wmText:'[Love]',wmImg:null,wmImgData:null,
   textFill:'tile',imgFill:'cover',blend:'source-over',imgBlend:'source-over',
   font:FONTS[0],effect:EFFECTS[0],wmColor:'#000000',
-  opacity:15,fontSize:24,angle:-25,
+  opacity:15,fontSize:24,angle:-25,density:10,
   imgOpacity:30,
   blurEnabled:false,blurRadius:8,format:'png',
   modelsLoaded:false,processing:false,editingId:null,
@@ -564,16 +568,17 @@ function applyTextEffect(ctx,txt,x,y,opts){
   if(effect.id==='glow'){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*sc;ctx.shadowOffsetY=sh.oy*sc;ctx.shadowBlur=sh.blur*sc;ctx.shadowColor=sh.color;}ctx.fillStyle=effect.fillGrad?undefined:(effect.fill||wmColor);ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;}
 }
 /* ===== Watermark Render ===== */
-function drawTextWM(wx,w,h,txt,op,fs,an,opts){
+function drawTextWM(wx,w,h,txt,op,fs,an,density,opts){
   wx.globalAlpha=op/100;
   const fontStr=`${fs}px ${opts.font?opts.font.family:'-apple-system,sans-serif'}`;
   wx.font=fontStr;wx.textAlign='center';wx.textBaseline='middle';
   // Always tile across entire canvas (like 七海贴图)
+  const dScale=density/10; // 10=default, lower=denser, higher=sparser
   wx.save();wx.translate(w/2,h/2);wx.rotate(an*Math.PI/180);
   const tw=wx.measureText(txt).width;
-  const gapX=Math.max(tw*0.4, 30);
+  const gapX=Math.max(tw*0.4, 30)*dScale;
   const gx=tw+gapX;
-  const gy=fs*2.5;
+  const gy=fs*2.5*dScale;
   const diag=Math.sqrt(w*w+h*h);
   for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){applyTextEffect(wx,txt,x,y,{...opts,fontSize:fs});}
   wx.restore();
@@ -610,6 +615,7 @@ function renderWM(canvas,img,faces,opts={}){
   const textEnabled=opts.textWmEnabled!==undefined?opts.textWmEnabled:S.textWmEnabled;
   const imgEnabled=opts.imgWmEnabled!==undefined?opts.imgWmEnabled:S.imgWmEnabled;
   const tOp=opts.opacity??S.opacity,tAn=opts.angle??S.angle,
+        tDen=opts.density??S.density,
         wmText=opts.wmText??S.wmText,
         fs=opts.fontSize??S.fontSize,
         font=opts.font??S.font,effect=opts.effect??S.effect,wmColor=opts.wmColor??S.wmColor;
@@ -630,7 +636,7 @@ function renderWM(canvas,img,faces,opts={}){
     textWmCanvas=document.createElement('canvas');textWmCanvas.width=w;textWmCanvas.height=h;
     const twx=textWmCanvas.getContext('2d');
     const renderOpts={font,effect,wmColor,fontSize:fs};
-    drawTextWM(twx,w,h,wmText,tOp,fs,tAn,renderOpts);
+    drawTextWM(twx,w,h,wmText,tOp,fs,tAn,tDen,renderOpts);
   }
   let imgWmCanvas=null;
   if(imgEnabled&&wmImg){
@@ -776,6 +782,7 @@ function updateSliderTrack(s){const p=((s.value-s.min)/(s.max-s.min))*100;s.styl
 $('opacitySlider').oninput=e=>{S.opacity=+e.target.value;$('opacityVal').textContent=e.target.value+'%';updateSliderTrack(e.target);};
 $('sizeSlider').oninput=e=>{S.fontSize=+e.target.value;$('sizeVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
 $('angleSlider').oninput=e=>{S.angle=+e.target.value;$('angleVal').textContent=e.target.value+'\u00B0';updateSliderTrack(e.target);};
+$('densitySlider').oninput=e=>{S.density=+e.target.value;$('densityVal').textContent=(e.target.value/10).toFixed(1)+'x';updateSliderTrack(e.target);};
 $('imgOpacitySlider').oninput=e=>{S.imgOpacity=+e.target.value;$('imgOpacityVal').textContent=e.target.value+'%';updateSliderTrack(e.target);};
 $('blurSlider').oninput=e=>{S.blurRadius=+e.target.value;$('blurVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
 $('fmtRow').onclick=e=>{const o=e.target.closest('.fmt-opt');if(!o)return;$('fmtRow').querySelectorAll('.fmt-opt').forEach(x=>x.classList.remove('active'));o.classList.add('active');S.format=o.dataset.fmt;};
@@ -787,7 +794,7 @@ function getTemplateFromState(){
     wmText:S.wmText,textFill:S.textFill,imgFill:S.imgFill,
     blend:S.blend,imgBlend:S.imgBlend,
     fontIdx:FONTS.indexOf(S.font),effectIdx:EFFECTS.indexOf(S.effect),wmColor:S.wmColor,
-    opacity:S.opacity,fontSize:S.fontSize,angle:S.angle,
+    opacity:S.opacity,fontSize:S.fontSize,angle:S.angle,density:S.density,
     imgOpacity:S.imgOpacity,
     blurEnabled:S.blurEnabled,blurRadius:S.blurRadius,faceEnabled:S.faceEnabled,faceMode:S.faceMode
   };
@@ -805,7 +812,7 @@ function applyTemplate(t){
   $('imgBlendTabs').querySelectorAll('.tab').forEach(x=>{x.classList.toggle('active',x.dataset.blend===t.imgBlend);});
   if(t.fontIdx>=0&&t.fontIdx<FONTS.length)S.font=FONTS[t.fontIdx];
   if(t.effectIdx>=0&&t.effectIdx<EFFECTS.length)S.effect=EFFECTS[t.effectIdx];
-  S.wmColor=t.wmColor;S.opacity=t.opacity;S.fontSize=t.fontSize;S.angle=t.angle;
+  S.wmColor=t.wmColor;S.opacity=t.opacity;S.fontSize=t.fontSize;S.angle=t.angle;S.density=t.density??10;
   S.imgOpacity=t.imgOpacity;S.blurEnabled=t.blurEnabled;S.blurRadius=t.blurRadius;
   S.faceEnabled=t.faceEnabled;S.faceMode=t.faceMode;
   $('toggleFace').checked=t.faceEnabled;$('faceModeWrap').style.opacity=t.faceEnabled?'1':'.35';$('faceModeWrap').style.pointerEvents=t.faceEnabled?'auto':'none';
@@ -814,6 +821,7 @@ function applyTemplate(t){
   $('opacitySlider').value=S.opacity;$('opacityVal').textContent=S.opacity+'%';updateSliderTrack($('opacitySlider'));
   $('sizeSlider').value=S.fontSize;$('sizeVal').textContent=S.fontSize+'px';updateSliderTrack($('sizeSlider'));
   $('angleSlider').value=S.angle;$('angleVal').textContent=S.angle+'\u00B0';updateSliderTrack($('angleSlider'));
+  $('densitySlider').value=S.density;$('densityVal').textContent=(S.density/10).toFixed(1)+'x';updateSliderTrack($('densitySlider'));
   $('imgOpacitySlider').value=S.imgOpacity;$('imgOpacityVal').textContent=S.imgOpacity+'%';updateSliderTrack($('imgOpacitySlider'));
   $('blurSlider').value=S.blurRadius;$('blurVal').textContent=S.blurRadius+'px';updateSliderTrack($('blurSlider'));
   $('fontPicker').querySelectorAll('.font-chip').forEach((c,i)=>{c.classList.toggle('active',i===t.fontIdx);});
@@ -848,7 +856,7 @@ function openEdit(id){
   $('editOpacitySlider').value=S.opacity;$('editOpacityVal').textContent=S.opacity+'%';
   $('editSizeSlider').value=S.fontSize;$('editSizeVal').textContent=S.fontSize+'px';
   $('editAngleSlider').value=S.angle;$('editAngleVal').textContent=S.angle+'\u00B0';
-  $('editSpacingSlider').value=180;$('editSpacingVal').textContent='180px';
+  $('editSpacingSlider').value=S.density;$('editSpacingVal').textContent=(S.density/10).toFixed(1)+'x';
   $('editToggleFace').checked=S.faceEnabled;
   updateSliderTrack($('editOpacitySlider'));updateSliderTrack($('editSizeSlider'));
   updateSliderTrack($('editAngleSlider'));updateSliderTrack($('editSpacingSlider'));
@@ -895,7 +903,7 @@ function bindEditSlider(sliderId,valId,suffix){
 bindEditSlider('editOpacitySlider','editOpacityVal','%');
 bindEditSlider('editSizeSlider','editSizeVal','px');
 bindEditSlider('editAngleSlider','editAngleVal','\u00B0');
-bindEditSlider('editSpacingSlider','editSpacingVal','px');
+bindEditSliderFn('editSpacingSlider','editSpacingVal',v=>(v/10).toFixed(1)+'x');
 $('editWmText').oninput=()=>{clearTimeout(editDebounce);editDebounce=setTimeout(()=>{const item=S.images.find(i=>i.id===S.editingId);if(item)renderEditPreview(item);},300);};
 $('editToggleFace').onchange=()=>{const item=S.images.find(i=>i.id===S.editingId);if(item)renderEditPreview(item);};
 $('editRedetect').onclick=async()=>{const item=S.images.find(i=>i.id===S.editingId);if(!item)return;$('editStatus').textContent='检测中...';const r=await detectFaces(item.img,item.orientation);item.faces=r.faces;renderEditPreview(item);};
