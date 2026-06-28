@@ -276,12 +276,6 @@ body{
           <div class="slider-head"><span class="slider-title">旋转角度</span><span class="slider-val" id="angleVal">-25&deg;</span></div>
           <input type="range" class="slider" id="angleSlider" min="-90" max="90" value="-25">
         </div>
-        <div class="tabs-label">填充方式</div>
-        <div class="fill-row" id="fillRow">
-          <div class="fill-opt active" data-fill="tile"><span class="fill-icon">&#9634;</span><span class="fill-label">平铺</span></div>
-          <div class="fill-opt" data-fill="center"><span class="fill-icon">&#9679;</span><span class="fill-label">居中</span></div>
-          <div class="fill-opt" data-fill="stretch"><span class="fill-icon">&#9645;</span><span class="fill-label">拉伸</span></div>
-        </div>
         <div class="tabs-label">混合模式</div>
         <div class="tabs" id="blendTabs">
           <div class="tab active" data-blend="source-over">覆盖</div>
@@ -570,28 +564,19 @@ function applyTextEffect(ctx,txt,x,y,opts){
   if(effect.id==='glow'){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*sc;ctx.shadowOffsetY=sh.oy*sc;ctx.shadowBlur=sh.blur*sc;ctx.shadowColor=sh.color;}ctx.fillStyle=effect.fillGrad?undefined:(effect.fill||wmColor);ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;}
 }
 /* ===== Watermark Render ===== */
-function drawTextWM(wx,w,h,txt,op,fs,an,mode,opts){
+function drawTextWM(wx,w,h,txt,op,fs,an,opts){
   wx.globalAlpha=op/100;
-  // Font size: use actual pixel size, no canvas scaling
   const fontStr=`${fs}px ${opts.font?opts.font.family:'-apple-system,sans-serif'}`;
   wx.font=fontStr;wx.textAlign='center';wx.textBaseline='middle';
-  if(mode==='tile'){
-    wx.save();wx.translate(w/2,h/2);wx.rotate(an*Math.PI/180);
-    const tw=wx.measureText(txt).width;
-    // Tight spacing: text width + small gap
-    const gapX=Math.max(tw*0.3, 20);
-    const gx=tw+gapX;
-    const gy=fs*2.2;
-    const diag=Math.sqrt(w*w+h*h);
-    for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){applyTextEffect(wx,txt,x,y,{...opts,fontSize:fs});}
-    wx.restore();
-  }else if(mode==='center'){
-    applyTextEffect(wx,txt,w/2,h/2,{...opts,fontSize:fs});
-  }else if(mode==='stretch'){
-    // Single large text covering the canvas
-    const bigSz=Math.min(w,h)*0.5;
-    applyTextEffect(wx,txt,w/2,h/2,{...opts,fontSize:bigSz});
-  }
+  // Always tile across entire canvas (like 七海贴图)
+  wx.save();wx.translate(w/2,h/2);wx.rotate(an*Math.PI/180);
+  const tw=wx.measureText(txt).width;
+  const gapX=Math.max(tw*0.4, 30);
+  const gx=tw+gapX;
+  const gy=fs*2.5;
+  const diag=Math.sqrt(w*w+h*h);
+  for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){applyTextEffect(wx,txt,x,y,{...opts,fontSize:fs});}
+  wx.restore();
 }
 function drawImageWM(wx,w,h,wmImg,op,fill,blend){
   wx.globalAlpha=op/100;
@@ -625,7 +610,6 @@ function renderWM(canvas,img,faces,opts={}){
   const textEnabled=opts.textWmEnabled!==undefined?opts.textWmEnabled:S.textWmEnabled;
   const imgEnabled=opts.imgWmEnabled!==undefined?opts.imgWmEnabled:S.imgWmEnabled;
   const tOp=opts.opacity??S.opacity,tAn=opts.angle??S.angle,
-        tFill=opts.textFill??S.textFill??'tile',
         wmText=opts.wmText??S.wmText,
         fs=opts.fontSize??S.fontSize,
         font=opts.font??S.font,effect=opts.effect??S.effect,wmColor=opts.wmColor??S.wmColor;
@@ -646,7 +630,7 @@ function renderWM(canvas,img,faces,opts={}){
     textWmCanvas=document.createElement('canvas');textWmCanvas.width=w;textWmCanvas.height=h;
     const twx=textWmCanvas.getContext('2d');
     const renderOpts={font,effect,wmColor,fontSize:fs};
-    drawTextWM(twx,w,h,wmText,tOp,fs,tAn,tFill,renderOpts);
+    drawTextWM(twx,w,h,wmText,tOp,fs,tAn,renderOpts);
   }
   let imgWmCanvas=null;
   if(imgEnabled&&wmImg){
@@ -759,7 +743,6 @@ $('toggleFace').onchange=e=>{S.faceEnabled=e.target.checked;$('faceModeWrap').st
 $('faceModeTabs').onclick=e=>{const t=e.target.closest('.tab');if(!t)return;$('faceModeTabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');S.faceMode=t.dataset.mode;};
 $('toggleBlur').onchange=e=>{S.blurEnabled=e.target.checked;$('blurRow').style.opacity=e.target.checked?'1':'.35';$('blurRow').style.pointerEvents=e.target.checked?'auto':'none';};
 /* ===== Fill ===== */
-$('fillRow').onclick=e=>{const o=e.target.closest('.fill-opt');if(!o)return;$('fillRow').querySelectorAll('.fill-opt').forEach(x=>x.classList.remove('active'));o.classList.add('active');S.textFill=o.dataset.fill;};
 $('imgFillRow').onclick=e=>{const o=e.target.closest('.fill-opt');if(!o)return;$('imgFillRow').querySelectorAll('.fill-opt').forEach(x=>x.classList.remove('active'));o.classList.add('active');S.imgFill=o.dataset.fill;};
 /* ===== Blend ===== */
 $('blendTabs').onclick=e=>{const t=e.target.closest('.tab');if(!t)return;$('blendTabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');S.blend=t.dataset.blend;};
