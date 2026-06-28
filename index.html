@@ -516,7 +516,7 @@ async function loadModels(){
   setStatus('初始化人脸模型...',false);
   try{
     _getModelBase();
-    console.log('[Face] Fetch override installed');
+    console.log('[Face] Model base:', _getModelBase());
   }catch(e){
     console.error('[Face] Override install failed:',e);
     setStatus('初始化失败',false);
