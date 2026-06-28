@@ -470,8 +470,9 @@ async function loadModels(){
   if(S.modelsLoaded)return;
   setStatus('加载人脸模型中...',false);
   const urls=[
-    'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights',
-    'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights'
+    window.location.origin+'/watermark-tool/weights',
+    'https://17luowuxin.github.io/watermark-tool/weights',
+    'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights'
   ];
   let loaded=false;
   for(const base of urls){
