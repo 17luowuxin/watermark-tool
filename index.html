@@ -21,7 +21,6 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
   background:var(--cream);color:var(--text);position:relative;
 }
-
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(ellipse 75% 60% at 0% 0%,#FFFDF8 0%,transparent 55%),
   radial-gradient(ellipse 70% 55% at 100% 0%,rgba(248,215,232,0.55) 0%,transparent 55%),
@@ -31,12 +30,9 @@ body{
 .h1{width:380px;height:380px;background:rgba(248,215,232,0.32);top:-80px;right:-60px}
 .h2{width:440px;height:440px;background:rgba(217,238,255,0.30);bottom:-100px;left:-100px}
 .h3{width:320px;height:320px;background:rgba(233,226,255,0.28);bottom:10%;right:-50px}
-
 .app{position:relative;z-index:1;height:100vh;display:flex;flex-direction:column;max-width:520px;margin:0 auto}
-
 .view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;transition:opacity .3s,transform .3s;padding:0 20px}
 .view.hidden{display:none}
-
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:48px 20px 16px;position:relative;z-index:2;flex-shrink:0}
 .topbar h1{font-size:24px;font-weight:700;letter-spacing:-0.5px;
   background:linear-gradient(135deg,var(--text) 0%,#7C6B8A 50%,#6B8AA0 100%);
@@ -45,7 +41,6 @@ body{
   background:rgba(255,255,255,0.5);padding:5px 14px;border-radius:14px;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:0.5px solid rgba(248,215,232,0.2)}
 .topbar-sub.ok{color:#5A9E6F}
-
 .card{
   background:var(--card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border-radius:22px;border:1px solid var(--border);
@@ -53,23 +48,19 @@ body{
   padding:4px 18px;margin-bottom:14px;position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(248,215,232,0.4) 20%,rgba(217,238,255,0.4) 50%,rgba(233,226,255,0.4) 80%,transparent)}
-
 .row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;min-height:50px}
 .row+.row{border-top:.5px solid var(--divider)}
 .row-label{font-size:15px;font-weight:500}
 .row-sub{font-size:12px;color:var(--text2);margin-top:2px}
-
 .toggle{position:relative;width:51px;height:31px;flex-shrink:0;cursor:pointer}
 .toggle input{opacity:0;width:0;height:0;position:absolute}
 .toggle-track{position:absolute;inset:0;background:#E8E8F0;border-radius:31px;transition:all .35s cubic-bezier(.4,0,.2,1);
   box-shadow:inset 0 1px 3px rgba(0,0,0,.05)}
-.toggle input:checked+.toggle-track{
-  background:linear-gradient(135deg,#A8D8FF 0%,#F0B8D8 50%,#C8B0F0 100%);
+.toggle input:checked+.toggle-track{background:linear-gradient(135deg,#A8D8FF 0%,#F0B8D8 50%,#C8B0F0 100%);
   box-shadow:inset 0 1px 2px rgba(255,255,255,.25),0 2px 10px rgba(168,176,240,.28)}
 .toggle-knob{position:absolute;top:2px;left:2px;width:27px;height:27px;background:#fff;border-radius:50%;
   transition:all .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 1px 3px rgba(0,0,0,.1),0 4px 8px rgba(0,0,0,.06)}
 .toggle input:checked~.toggle-knob{left:22px}
-
 .tabs-label{font-size:15px;font-weight:500;margin-bottom:10px;padding:14px 0 0}
 .tabs{display:flex;background:rgba(0,0,0,.035);border-radius:13px;padding:3px;gap:2px}
 .tab{flex:1;padding:9px 8px;border-radius:10.5px;font-size:13px;font-weight:500;
@@ -77,7 +68,6 @@ body{
 .tab.active{background:rgba(255,255,255,.85);color:var(--text);
   box-shadow:0 1px 3px rgba(0,0,0,.06),inset 0 0 0 .5px rgba(168,216,255,.2)}
 .tab:hover:not(.active){color:var(--text);background:rgba(255,255,255,.3)}
-
 .slider-row{padding:14px 0}
 .slider-row+.slider-row{border-top:.5px solid var(--divider)}
 .slider-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
@@ -88,7 +78,6 @@ body{
 .slider{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:5px;background:rgba(0,0,0,.055);outline:none}
 .slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;cursor:pointer;
   box-shadow:0 1px 4px rgba(0,0,0,.12),0 4px 12px rgba(0,0,0,.08),0 0 0 3px rgba(248,215,232,.2)}
-
 /* Import */
 .import-zone{padding:36px 20px;text-align:center;cursor:pointer;
   border:2px dashed rgba(168,216,255,.4);border-radius:16px;transition:all .3s;margin:4px 0;background:rgba(217,238,255,.08)}
@@ -97,7 +86,6 @@ body{
 .import-icon{font-size:36px;margin-bottom:8px;opacity:.4;line-height:1}
 .import-text{font-size:14px;color:var(--text2)}
 .import-sub{font-size:12px;color:var(--text3);margin-top:4px}
-
 /* Grid */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 0}
 .grid-item{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--cloud);cursor:pointer;
@@ -114,7 +102,6 @@ body{
   font-size:13px;cursor:pointer;opacity:0;transition:opacity .2s;backdrop-filter:blur(4px);border:none;z-index:2}
 .grid-item:hover .grid-del{opacity:1}
 .grid-count{font-size:12px;color:var(--text2);padding:6px 0;text-align:center}
-
 /* Image WM upload */
 .wm-img-zone{display:flex;align-items:center;gap:12px;padding:12px 0;cursor:pointer}
 .wm-img-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.04);
@@ -130,19 +117,6 @@ body{
   background:rgba(0,0,0,.5);color:white;font-size:12px;display:none;align-items:center;justify-content:center;
   cursor:pointer;border:none;z-index:2}
 .wm-img-thumb:hover .wm-img-clear{display:flex}
-
-/* Wm type */
-.wm-type-area{display:flex;gap:8px;padding:4px 0 12px}
-.wm-type-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:14px 8px;border-radius:14px;cursor:pointer;
-  border:1.5px solid transparent;background:rgba(255,255,255,.3);transition:all .3s;user-select:none}
-.wm-type-btn:hover{background:rgba(255,255,255,.5)}
-.wm-type-btn.active{background:rgba(255,255,255,.8);border-color:rgba(248,215,232,.5);box-shadow:0 2px 10px rgba(248,215,232,.15)}
-.wm-type-ico{font-size:22px;opacity:.5;line-height:1}
-.wm-type-label{font-size:12px;font-weight:500;color:var(--text2)}
-.wm-type-btn.active .wm-type-ico{opacity:1}
-.wm-type-btn.active .wm-type-label{color:var(--text)}
-
 /* Fill */
 .fill-row{display:flex;gap:6px;padding:4px 0 0}
 .fill-opt{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
@@ -154,23 +128,19 @@ body{
 .fill-label{font-size:10px;font-weight:500;color:var(--text2)}
 .fill-opt.active .fill-icon{opacity:1}
 .fill-opt.active .fill-label{color:var(--text)}
-
 /* Font picker */
 .font-picker{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0 8px;max-height:200px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .font-chip{padding:8px 12px;border-radius:10px;font-size:13px;cursor:pointer;
   border:1.5px solid transparent;background:rgba(255,255,255,.3);transition:all .25s;user-select:none;white-space:nowrap}
 .font-chip:hover{background:rgba(255,255,255,.55)}
 .font-chip.active{background:rgba(255,255,255,.85);border-color:rgba(248,215,232,.5);box-shadow:0 2px 8px rgba(248,215,232,.12)}
-
 /* Effect presets */
 .effect-row{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0 8px}
 .effect-chip{padding:8px 14px;border-radius:12px;font-size:12px;font-weight:500;cursor:pointer;
-  border:1.5px solid transparent;background:rgba(255,255,255,.3);transition:all .25s;user-select:none;
-  color:var(--text2)}
+  border:1.5px solid transparent;background:rgba(255,255,255,.3);transition:all .25s;user-select:none;color:var(--text2)}
 .effect-chip:hover{background:rgba(255,255,255,.55)}
 .effect-chip.active{background:rgba(255,255,255,.85);border-color:rgba(217,238,255,.5);
   box-shadow:0 2px 8px rgba(217,238,255,.15);color:var(--text)}
-
 /* Color */
 .color-row{display:flex;align-items:center;gap:10px;padding:6px 0}
 .color-input{width:36px;height:36px;border-radius:12px;border:2px solid rgba(255,255,255,.6);
@@ -178,7 +148,6 @@ body{
 .color-input::-webkit-color-swatch-wrapper{padding:0}
 .color-input::-webkit-color-swatch{border:none;border-radius:10px}
 .color-label{font-size:13px;color:var(--text2)}
-
 /* Format */
 .fmt-row{display:flex;gap:8px}
 .fmt-opt{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
@@ -193,7 +162,6 @@ body{
 .fmt-ico.webp{background:linear-gradient(135deg,#A8E8CC,#A8D8FF)}
 .fmt-name{font-size:11px;font-weight:500}
 .fmt-desc{font-size:9px;color:var(--text3)}
-
 /* Buttons */
 .btn-row{display:flex;gap:10px;padding:10px 0}
 .btn{flex:1;padding:14px 16px;border-radius:18px;font-size:15px;font-weight:600;cursor:pointer;transition:all .25s;
@@ -208,14 +176,23 @@ body{
 .btn-p:disabled{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
 .btn-s{background:rgba(255,255,255,.5);color:var(--text2);border:1px solid rgba(0,0,0,.06)}
 .btn-s:hover{background:rgba(255,255,255,.7);color:var(--text)}
-
 .pbar{width:100%;height:4px;border-radius:2px;background:rgba(0,0,0,.05);overflow:hidden;margin:6px 0;display:none}
 .pbar.on{display:block}
 .pfill{height:100%;border-radius:2px;width:0%;background:linear-gradient(90deg,#A8D8FF,#F0B8D8,#C8B0F0);transition:width .3s}
-
 .footer{text-align:center;padding:16px 0;font-size:11px;color:var(--text3)}
 .hidden{display:none!important}
-
+/* Template */
+.tpl-list{display:flex;flex-direction:column;gap:6px;padding:6px 0;max-height:200px;overflow-y:auto}
+.tpl-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;
+  background:rgba(255,255,255,.3);cursor:pointer;transition:all .2s;border:1px solid transparent}
+.tpl-item:hover{background:rgba(255,255,255,.55);border-color:rgba(248,215,232,.3)}
+.tpl-item-name{flex:1;font-size:13px;font-weight:500}
+.tpl-item-meta{font-size:11px;color:var(--text3)}
+.tpl-item-del{width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.08);
+  display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text3);
+  cursor:pointer;border:none;transition:all .2s}
+.tpl-item-del:hover{background:rgba(220,80,80,.15);color:#c0392b}
+.tpl-empty{text-align:center;padding:16px;font-size:12px;color:var(--text3)}
 /* ===== Edit View ===== */
 .back-btn{width:36px;height:36px;border-radius:14px;border:none;cursor:pointer;
   background:rgba(255,255,255,0.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
@@ -237,18 +214,14 @@ body{
 </style>
 </head>
 <body>
-
 <div class="bg"></div><div class="halo h1"></div><div class="halo h2"></div><div class="halo h3"></div>
-
 <div class="app">
-
   <!-- ========== LIST VIEW ========== -->
   <div id="listView" class="view">
     <div class="topbar">
       <h1>水印工具</h1>
       <span class="topbar-sub" id="status">准备就绪</span>
     </div>
-
     <!-- Import -->
     <div class="card">
       <div class="import-zone" id="importZone">
@@ -260,7 +233,6 @@ body{
       <div class="grid-count hidden" id="gridCount"></div>
       <div class="grid hidden" id="imageGrid"></div>
     </div>
-
     <!-- Face -->
     <div class="card">
       <div class="row">
@@ -276,7 +248,6 @@ body{
         </div>
       </div>
     </div>
-
     <!-- Text Watermark -->
     <div class="card" id="textWmCard">
       <div class="row">
@@ -285,25 +256,21 @@ body{
       </div>
       <div id="textWmSection">
         <input type="text" class="wm-input" id="wmText" placeholder="输入水印文字" value="[Love]">
-
         <div class="tabs-label">字体</div>
         <div class="font-picker" id="fontPicker"></div>
-
         <div class="tabs-label">文字效果</div>
         <div class="effect-row" id="effectRow"></div>
-
         <div class="color-row">
           <input type="color" class="color-input" id="wmColor" value="#000000">
           <span class="color-label">文字颜色</span>
         </div>
-
         <div class="slider-row">
           <div class="slider-head"><span class="slider-title">不透明度</span><span class="slider-val" id="opacityVal">15%</span></div>
           <input type="range" class="slider" id="opacitySlider" min="1" max="100" value="15">
         </div>
         <div class="slider-row">
           <div class="slider-head"><span class="slider-title">字号</span><span class="slider-val" id="sizeVal">24px</span></div>
-          <input type="range" class="slider" id="sizeSlider" min="10" max="80" value="24">
+          <input type="range" class="slider" id="sizeSlider" min="10" max="120" value="24">
         </div>
         <div class="slider-row">
           <div class="slider-head"><span class="slider-title">旋转角度</span><span class="slider-val" id="angleVal">-25&deg;</span></div>
@@ -311,22 +278,19 @@ body{
         </div>
         <div class="tabs-label">填充方式</div>
         <div class="fill-row" id="fillRow">
-          <div class="fill-opt active" data-fill="tile">
-            <span class="fill-icon">&#9634;</span>
-            <span class="fill-label">平铺</span>
-          </div>
-          <div class="fill-opt" data-fill="center">
-            <span class="fill-icon">&#9679;</span>
-            <span class="fill-label">居中</span>
-          </div>
-          <div class="fill-opt" data-fill="stretch">
-            <span class="fill-icon">&#9645;</span>
-            <span class="fill-label">拉伸</span>
-          </div>
+          <div class="fill-opt active" data-fill="tile"><span class="fill-icon">&#9634;</span><span class="fill-label">平铺</span></div>
+          <div class="fill-opt" data-fill="center"><span class="fill-icon">&#9679;</span><span class="fill-label">居中</span></div>
+          <div class="fill-opt" data-fill="stretch"><span class="fill-icon">&#9645;</span><span class="fill-label">拉伸</span></div>
+        </div>
+        <div class="tabs-label">混合模式</div>
+        <div class="tabs" id="blendTabs">
+          <div class="tab active" data-blend="source-over">覆盖</div>
+          <div class="tab" data-blend="multiply">正片叠底</div>
+          <div class="tab" data-blend="screen">滤色</div>
+          <div class="tab" data-blend="overlay">叠加</div>
         </div>
       </div>
     </div>
-
     <!-- Image Watermark -->
     <div class="card" id="imgWmCard">
       <div class="row">
@@ -345,37 +309,15 @@ body{
             <div class="wm-img-hint">支持 PNG（透明背景效果最佳）</div>
           </div>
         </div>
-
         <div class="slider-row">
           <div class="slider-head"><span class="slider-title">不透明度</span><span class="slider-val" id="imgOpacityVal">30%</span></div>
           <input type="range" class="slider" id="imgOpacitySlider" min="1" max="100" value="30">
         </div>
-        <div class="slider-row">
-          <div class="slider-head"><span class="slider-title">图片尺寸</span><span class="slider-val" id="wmImgSizeVal">120px</span></div>
-          <input type="range" class="slider" id="wmImgSizeSlider" min="20" max="400" value="120">
-        </div>
-        <div class="slider-row">
-          <div class="slider-head"><span class="slider-title">间距</span><span class="slider-val" id="imgSpacingVal">180px</span></div>
-          <input type="range" class="slider" id="imgSpacingSlider" min="40" max="600" value="180">
-        </div>
-        <div class="slider-row">
-          <div class="slider-head"><span class="slider-title">旋转角度</span><span class="slider-val" id="imgAngleVal">-25&deg;</span></div>
-          <input type="range" class="slider" id="imgAngleSlider" min="-90" max="90" value="-25">
-        </div>
         <div class="tabs-label">填充方式</div>
         <div class="fill-row" id="imgFillRow">
-          <div class="fill-opt active" data-fill="tile">
-            <span class="fill-icon">&#9634;</span>
-            <span class="fill-label">平铺</span>
-          </div>
-          <div class="fill-opt" data-fill="center">
-            <span class="fill-icon">&#9679;</span>
-            <span class="fill-label">居中</span>
-          </div>
-          <div class="fill-opt" data-fill="stretch">
-            <span class="fill-icon">&#9645;</span>
-            <span class="fill-label">拉伸</span>
-          </div>
+          <div class="fill-opt active" data-fill="tile"><span class="fill-icon">&#9634;</span><span class="fill-label">平铺</span></div>
+          <div class="fill-opt" data-fill="center"><span class="fill-icon">&#9679;</span><span class="fill-label">居中</span></div>
+          <div class="fill-opt" data-fill="stretch"><span class="fill-icon">&#9645;</span><span class="fill-label">拉伸</span></div>
         </div>
         <div class="tabs-label">混合模式</div>
         <div class="tabs" id="imgBlendTabs">
@@ -386,22 +328,6 @@ body{
         </div>
       </div>
     </div>
-
-    <!-- Shared -->
-    <div class="card">
-      <div class="slider-row">
-        <div class="slider-head"><span class="slider-title">通用间距</span><span class="slider-val" id="spacingVal">180px</span></div>
-        <input type="range" class="slider" id="spacingSlider" min="40" max="600" value="180">
-      </div>
-      <div class="tabs-label">混合模式</div>
-      <div class="tabs" id="blendTabs">
-        <div class="tab active" data-blend="source-over">覆盖</div>
-        <div class="tab" data-blend="multiply">正片叠底</div>
-        <div class="tab" data-blend="screen">滤色</div>
-        <div class="tab" data-blend="overlay">叠加</div>
-      </div>
-    </div>
-
     <!-- Blur -->
     <div class="card">
       <div class="row">
@@ -413,7 +339,17 @@ body{
         <input type="range" class="slider" id="blurSlider" min="1" max="50" value="8">
       </div>
     </div>
-
+    <!-- Templates -->
+    <div class="card">
+      <div class="row">
+        <div><div class="row-label">模板</div><div class="row-sub">保存/加载水印配置</div></div>
+      </div>
+      <div class="btn-row" style="padding:4px 0 8px">
+        <input type="text" class="wm-input" id="tplName" placeholder="模板名称" style="flex:2">
+        <button class="btn btn-p" id="btnSaveTpl" style="flex:1;padding:10px 12px;font-size:13px">保存</button>
+      </div>
+      <div class="tpl-list" id="tplList"><div class="tpl-empty">暂无模板</div></div>
+    </div>
     <!-- Export -->
     <div class="card">
       <div class="tabs-label">输出格式</div>
@@ -428,18 +364,15 @@ body{
         <button class="btn btn-p" id="btnExport" disabled>批量导出</button>
       </div>
     </div>
-
     <div class="footer">所有处理均在本地完成，图片不会上传</div>
   </div>
-
   <!-- ========== EDIT VIEW ========== -->
   <div id="editView" class="view hidden" style="padding:0 20px">
     <div class="edit-topbar">
-      <button class="back-btn" id="backBtn">&lsaquo;</button>
+      <button class="back-btn" id="backBtn">&#8249;</button>
       <h2 id="editTitle">编辑图片</h2>
       <span class="topbar-sub" id="editStatus">未处理</span>
     </div>
-
     <div class="edit-preview" id="editPreview">
       <img id="editImg" src="" alt="">
     </div>
@@ -447,7 +380,6 @@ body{
       <span id="editFaceInfo">未检测人脸</span>
       <span class="edit-info-tag" id="editModeTag">自动</span>
     </div>
-
     <div class="card">
       <div class="tabs-label">水印文字</div>
       <input type="text" class="wm-input" id="editWmText" placeholder="输入水印文字">
@@ -455,7 +387,7 @@ body{
         <div class="slider-head"><span class="slider-title">不透明度</span><span class="slider-val" id="editOpacityVal">15%</span></div>
         <input type="range" class="slider" id="editOpacitySlider" min="1" max="100" value="15">
       </div>
-      <div class="slider-row" id="editSizeRow">
+      <div class="slider-row">
         <div class="slider-head"><span class="slider-title">字号</span><span class="slider-val" id="editSizeVal">24px</span></div>
         <input type="range" class="slider" id="editSizeSlider" min="10" max="80" value="24">
       </div>
@@ -468,607 +400,366 @@ body{
         <input type="range" class="slider" id="editSpacingSlider" min="40" max="600" value="180">
       </div>
     </div>
-
     <div class="card">
       <div class="row">
         <div><div class="row-label">自动擦脸</div></div>
         <label class="toggle"><input type="checkbox" id="editToggleFace" checked><div class="toggle-track"></div><div class="toggle-knob"></div></label>
       </div>
     </div>
-
     <div class="btn-row">
       <button class="btn btn-s" id="editRedetect">重新检测</button>
       <button class="btn btn-p" id="editSave">保存这张</button>
     </div>
     <div style="height:40px"></div>
   </div>
-
 </div>
-
 <script>
 /* ===== Fonts ===== */
-const FONTS = [
-  {name:'系统默认', family:'system-ui, -apple-system, sans-serif'},
-  {name:'马善政', family:"'Ma Shan Zheng', cursive"},
-  {name:'站酷快乐体', family:"'ZCOOL KuaiLe', sans-serif"},
-  {name:'站酷小薇体', family:"'ZCOOL XiaoWei', serif"},
-  {name:'刘建毛笔', family:"'Liu Jian Mao Cao', cursive"},
-  {name:'龙藏', family:"'Long Cang', cursive"},
-  {name:'志莽行', family:"'Zhi Mang Xing', cursive"},
-  {name:'思源宋体', family:"'Noto Serif SC', serif"},
-  {name:'Playfair', family:"'Playfair Display', serif"},
-  {name:'Dancing Script', family:"'Dancing Script', cursive"},
-  {name:'Great Vibes', family:"'Great Vibes', cursive"},
-  {name:'Montserrat', family:"'Montserrat', sans-serif"},
-  {name:'Permanent Marker', family:"'Permanent Marker', cursive"},
+const FONTS=[
+  {name:'系统默认',family:'system-ui,-apple-system,sans-serif'},
+  {name:'马善政',family:"'Ma Shan Zheng',cursive"},
+  {name:'站酷快乐体',family:"'ZCOOL KuaiLe',sans-serif"},
+  {name:'站酷小薇体',family:"'ZCOOL XiaoWei',serif"},
+  {name:'刘建毛笔',family:"'Liu Jian Mao Cao',cursive"},
+  {name:'龙藏',family:"'Long Cang',cursive"},
+  {name:'志莽行',family:"'Zhi Mang Xing',cursive"},
+  {name:'思源宋体',family:"'Noto Serif SC',serif"},
+  {name:'Playfair',family:"'Playfair Display',serif"},
+  {name:'Dancing Script',family:"'Dancing Script',cursive"},
+  {name:'Great Vibes',family:"'Great Vibes',cursive"},
+  {name:'Montserrat',family:"'Montserrat',sans-serif"},
+  {name:'Permanent Marker',family:"'Permanent Marker',cursive"},
 ];
-
-/* ===== Text Effects ===== */
-const EFFECTS = [
-  {
-    name:'默认', id:'default',
-    fill:null, stroke:null, shadow:null
-  },
-  {
-    name:'立体浮雕', id:'emboss',
-    fill:'#ffffff',
-    stroke:{color:'rgba(0,0,0,0.4)', width:2},
-    shadow:[{ox:1,oy:1,blur:0,color:'rgba(255,255,255,0.5)'},{ox:-1,oy:-1,blur:0,color:'rgba(0,0,0,0.3)'}]
-  },
-  {
-    name:'3D厚底', id:'thick3d',
-    fill:null, stroke:null,
-    shadow3d:true, depth:6, depthColor:'rgba(80,60,100,0.35)'
-  },
-  {
-    name:'发光', id:'glow',
-    fill:null, stroke:null,
-    shadow:[{ox:0,oy:0,blur:8,color:'rgba(168,176,240,0.8)'},{ox:0,oy:0,blur:16,color:'rgba(248,215,232,0.5)'}]
-  },
-  {
-    name:'描边', id:'outline',
-    fill:null,
-    stroke:{color:'rgba(0,0,0,0.6)', width:3},
-    shadow:null
-  },
-  {
-    name:'投影', id:'dropshadow',
-    fill:null, stroke:null,
-    shadow:[{ox:3,oy:3,blur:6,color:'rgba(0,0,0,0.35)'}]
-  },
-  {
-    name:'印章', id:'stamp',
-    fill:'#c0392b', stroke:{color:'#c0392b', width:2},
-    shadow:null, stampMode:true
-  },
-  {
-    name:'镂空', id:'hollow',
-    fill:null,
-    stroke:{color:'rgba(0,0,0,0.5)', width:2},
-    shadow:null
-  },
-  {
-    name:'渐变', id:'gradient',
-    fillGrad:[{c:'#A8D8FF'},{c:'#F0B8D8'},{c:'#C8B0F0'}],
-    stroke:null, shadow:null
-  },
-  {
-    name:'金属质感', id:'metal',
-    fillGrad:[{c:'rgba(180,180,200,1)'},{c:'rgba(255,255,255,0.9)'},{c:'rgba(120,120,140,1)'}],
-    stroke:{color:'rgba(0,0,0,0.2)', width:1},
-    shadow:[{ox:2,oy:2,blur:3,color:'rgba(0,0,0,0.25)'}]
-  }
+const EFFECTS=[
+  {name:'默认',id:'default'},
+  {name:'立体浮雕',id:'emboss',fill:'#ffffff',stroke:{color:'rgba(0,0,0,0.4)',width:2},shadow:[{ox:1,oy:1,blur:0,color:'rgba(255,255,255,0.5)'},{ox:-1,oy:-1,blur:0,color:'rgba(0,0,0,0.3)'}]},
+  {name:'3D厚底',id:'thick3d',shadow3d:true,depth:6,depthColor:'rgba(80,60,100,0.35)'},
+  {name:'发光',id:'glow',shadow:[{ox:0,oy:0,blur:8,color:'rgba(168,176,240,0.8)'},{ox:0,oy:0,blur:16,color:'rgba(248,215,232,0.5)'}]},
+  {name:'描边',id:'outline',stroke:{color:'rgba(0,0,0,0.6)',width:3}},
+  {name:'投影',id:'dropshadow',shadow:[{ox:3,oy:3,blur:6,color:'rgba(0,0,0,0.35)'}]},
+  {name:'印章',id:'stamp',fill:'#c0392b',stroke:{color:'#c0392b',width:2},stampMode:true},
+  {name:'镂空',id:'hollow',stroke:{color:'rgba(0,0,0,0.5)',width:2}},
+  {name:'渐变',id:'gradient',fillGrad:[{c:'#A8D8FF'},{c:'#F0B8D8'},{c:'#C8B0F0'}]},
+  {name:'金属质感',id:'metal',fillGrad:[{c:'rgba(180,180,200,1)'},{c:'rgba(255,255,255,0.9)'},{c:'rgba(120,120,140,1)'}],stroke:{color:'rgba(0,0,0,0.2)',width:1},shadow:[{ox:2,oy:2,blur:3,color:'rgba(0,0,0,0.25)'}]}
 ];
-
-/* ===== State ===== */
-const S = {
-  images: [], faceEnabled: true, faceMode: 'auto',
-  textWmEnabled: true, imgWmEnabled: false,
-  wmText: '[Love]', wmImg: null, wmImgData: null,
-  textFill: 'tile', imgFill: 'tile', blend: 'source-over', imgBlend: 'source-over',
-  font: FONTS[0], effect: EFFECTS[0], wmColor: '#000000',
-  opacity: 15, fontSize: 24, angle: -25,
-  imgOpacity: 30, wmImgSize: 120, imgSpacing: 180, imgAngle: -25,
-  spacing: 180,
-  blurEnabled: false, blurRadius: 8, format: 'png',
-  modelsLoaded: false, processing: false, editingId: null
+const S={
+  images:[],faceEnabled:true,faceMode:'auto',
+  textWmEnabled:true,imgWmEnabled:false,
+  wmText:'[Love]',wmImg:null,wmImgData:null,
+  textFill:'tile',imgFill:'tile',blend:'source-over',imgBlend:'source-over',
+  font:FONTS[0],effect:EFFECTS[0],wmColor:'#000000',
+  opacity:15,fontSize:24,angle:-25,
+  imgOpacity:30,
+  blurEnabled:false,blurRadius:8,format:'png',
+  modelsLoaded:false,processing:false,editingId:null,
+  templates:JSON.parse(localStorage.getItem('wm_templates')||'[]')
 };
-let uid = 0;
-const $ = id => document.getElementById(id);
-
-/* ===== Init UI: Fonts & Effects ===== */
-function initFontPicker() {
-  const el = $('fontPicker');
-  el.innerHTML = FONTS.map((f,i) =>
-    `<div class="font-chip${i===0?' active':''}" data-idx="${i}" style="font-family:${f.family}">${f.name}</div>`
-  ).join('');
-  el.onclick = e => {
-    const chip = e.target.closest('.font-chip');
-    if (!chip) return;
-    el.querySelectorAll('.font-chip').forEach(c=>c.classList.remove('active'));
-    chip.classList.add('active');
-    S.font = FONTS[+chip.dataset.idx];
-  };
+let uid=0;
+const $=id=>document.getElementById(id);
+/* ===== Init UI ===== */
+function initFontPicker(){
+  const el=$('fontPicker');
+  el.innerHTML=FONTS.map((f,i)=>`<div class="font-chip${i===0?' active':''}" data-idx="${i}" style="font-family:${f.family}">${f.name}</div>`).join('');
+  el.onclick=e=>{const c=e.target.closest('.font-chip');if(!c)return;el.querySelectorAll('.font-chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');S.font=FONTS[+c.dataset.idx];};
 }
-
-function initEffectRow() {
-  const el = $('effectRow');
-  el.innerHTML = EFFECTS.map((ef,i) =>
-    `<div class="effect-chip${i===0?' active':''}" data-idx="${i}">${ef.name}</div>`
-  ).join('');
-  el.onclick = e => {
-    const chip = e.target.closest('.effect-chip');
-    if (!chip) return;
-    el.querySelectorAll('.effect-chip').forEach(c=>c.classList.remove('active'));
-    chip.classList.add('active');
-    S.effect = EFFECTS[+chip.dataset.idx];
-    // If stamp mode, force a color
-    if (S.effect.stampMode) $('wmColor').value = '#c0392b';
-  };
+function initEffectRow(){
+  const el=$('effectRow');
+  el.innerHTML=EFFECTS.map((ef,i)=>`<div class="effect-chip${i===0?' active':''}" data-idx="${i}">${ef.name}</div>`).join('');
+  el.onclick=e=>{const c=e.target.closest('.effect-chip');if(!c)return;el.querySelectorAll('.effect-chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');S.effect=EFFECTS[+c.dataset.idx];if(S.effect.stampMode)$('wmColor').value='#c0392b';};
 }
-
-initFontPicker();
-initEffectRow();
-
+initFontPicker();initEffectRow();
 /* ===== Models ===== */
-async function loadModels() {
-  if (S.modelsLoaded) return;
-  setStatus('加载模型中...', false);
-  try {
-    await faceapi.nets.ssdMobilenetv1.loadFromUri('https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights');
-    await faceapi.nets.faceLandmark68Net.loadFromUri('https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights');
-    S.modelsLoaded = true;
-    setStatus('模型就绪', true);
-  } catch(e) { console.warn(e); setStatus('模型加载失败', false); }
+async function loadModels(){
+  if(S.modelsLoaded)return;
+  setStatus('加载人脸模型中...',false);
+  const urls=[
+    'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights',
+    'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights'
+  ];
+  let loaded=false;
+  for(const base of urls){
+    try{
+      await faceapi.nets.ssdMobilenetv1.loadFromUri(base);
+      await faceapi.nets.faceLandmark68Net.loadFromUri(base);
+      S.modelsLoaded=true;loaded=true;break;
+    }catch(e){console.warn('Model load failed from',base,e);}
+  }
+  if(loaded){setStatus('人脸模型已就绪',true);
+    // If images already imported, auto detect
+    const pending=S.images.filter(i=>i.faceDetectStatus==='pending');
+    if(pending.length)autoDetectAll();
+  }else{
+    setStatus('人脸模型加载失败 - 可使用其他功能',false);
+    // Mark pending items as error
+    S.images.filter(i=>i.faceDetectStatus==='pending').forEach(i=>{i.faceDetectStatus='error';});
+    updateGrid();
+  }
 }
-
-function setStatus(t, ok) { const el=$('status'); el.textContent=t; el.className='topbar-sub'+(ok?' ok':''); }
-
+function setStatus(t,ok){const el=$('status');el.textContent=t;el.className='topbar-sub'+(ok?' ok':'');}
 /* ===== Face Detection ===== */
-async function detectReal(img) {
-  try {
-    const d = await faceapi.detectAllFaces(img, new faceapi.SsdMobilenetv1Options({minConfidence:0.5})).withFaceLandmarks();
-    return d.map(x => { const b=x.detection.box; return {x:b.x,y:b.y,w:b.width,h:b.height}; });
-  } catch(e) { return []; }
+async function detectReal(img){
+  try{const d=await faceapi.detectAllFaces(img,new faceapi.SsdMobilenetv1Options({minConfidence:0.5})).withFaceLandmarks();return d.map(x=>{const b=x.detection.box;return{x:b.x,y:b.y,w:b.width,h:b.height};});}catch(e){return[];}
 }
-
-function detectAnime(img, canvas) {
-  const ctx=canvas.getContext('2d');
-  const w=canvas.width=img.naturalWidth||img.width, h=canvas.height=img.naturalHeight||img.height;
-  ctx.drawImage(img,0,0,w,h);
-  const id=ctx.getImageData(0,0,w,h), d=id.data;
-  const mask=new Uint8Array(w*h);
-  for(let i=0;i<d.length;i+=4){
-    const r=d[i],g=d[i+1],b=d[i+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b),df=mx-mn,br=(mx+mn)/2;
-    mask[i/4]=(br>160&&df>10&&df<80&&r>g&&g>b&&r-b>15&&r-b<100&&df/(br+1)<0.4)?1:0;
-  }
-  const vis=new Uint8Array(w*h), faces=[], minA=w*h*0.01, maxA=w*h*0.35;
-  for(let y=0;y<h;y+=3) for(let x=0;x<w;x+=3){
-    if(mask[y*w+x]&&!vis[y*w+x]){
-      const rg=flood(mask,vis,x,y,w,h);
-      if(rg.a>=minA&&rg.a<=maxA){const asp=(rg.mx-rg.nx)/(rg.my-rg.ny+1);if(asp>.4&&asp<2)faces.push({x:rg.nx,y:rg.ny,w:rg.mx-rg.nx,h:rg.my-rg.ny});}
-    }
-  }
+function detectAnime(img,canvas){
+  const ctx=canvas.getContext('2d');const w=canvas.width=img.naturalWidth||img.width,h=canvas.height=img.naturalHeight||img.height;
+  ctx.drawImage(img,0,0,w,h);const id=ctx.getImageData(0,0,w,h),d=id.data;const mask=new Uint8Array(w*h);
+  for(let i=0;i<d.length;i+=4){const r=d[i],g=d[i+1],b=d[i+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b),df=mx-mn,br=(mx+mn)/2;mask[i/4]=(br>160&&df>10&&df<80&&r>g&&g>b&&r-b>15&&r-b<100&&df/(br+1)<0.4)?1:0;}
+  const vis=new Uint8Array(w*h),faces=[],minA=w*h*0.01,maxA=w*h*0.35;
+  for(let y=0;y<h;y+=3)for(let x=0;x<w;x+=3){if(mask[y*w+x]&&!vis[y*w+x]){const rg=flood(mask,vis,x,y,w,h);if(rg.a>=minA&&rg.a<=maxA){const asp=(rg.mx-rg.nx)/(rg.my-rg.ny+1);if(asp>.4&&asp<2)faces.push({x:rg.nx,y:rg.ny,w:rg.mx-rg.nx,h:rg.my-rg.ny});}}}
   return merge(faces);
 }
-
-function flood(m,v,sx,sy,w,h){
-  const st=[[sx,sy]];let a=0,nx=sx,mx=sx,ny=sy,my=sy;
-  while(st.length&&a<50000){
-    const[x,y]=st.pop();const i=y*w+x;
-    if(x<0||x>=w||y<0||y>=h||v[i]||!m[i])continue;
-    v[i]=1;a++;nx=Math.min(nx,x);mx=Math.max(mx,x);ny=Math.min(ny,y);my=Math.max(my,y);
-    st.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);
-  }
-  return{a,nx,mx,ny,my};
-}
-
-function merge(f){
-  if(f.length<=1)return f;
-  const r=[],u=new Set();
-  for(let i=0;i<f.length;i++){if(u.has(i))continue;let b={...f[i]};u.add(i);
-    for(let j=i+1;j<f.length;j++){if(u.has(j))continue;const c=f[j];
-      if(b.x<c.x+c.w&&b.x+b.w>c.x&&b.y<c.y+c.h&&b.y+b.h>c.y){
-        const nx=Math.min(b.x,c.x),ny=Math.min(b.y,c.y);
-        b={x:nx,y:ny,w:Math.max(b.x+b.w,c.x+c.w)-nx,h:Math.max(b.y+b.h,c.y+c.h)-ny};u.add(j);
-      }
-    }r.push(b);
-  }return r;
-}
-
-/* ===== EXIF Orientation ===== */
-async function getExifOrientation(blob) {
-  return new Promise(resolve => {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const view = new DataView(e.target.result);
-      if (view.byteLength < 2 || view.getUint16(0, false) !== 0xFFD8) { resolve(1); return; }
-      let offset = 2, length = view.byteLength;
-      while (offset < length) {
-        if (offset + 2 > length) { resolve(1); return; }
-        const marker = view.getUint16(offset, false);
-        offset += 2;
-        if (marker === 0xFFE1) {
-          if (offset + 10 > length) { resolve(1); return; }
-          if (view.getUint32(offset + 2, false) !== 0x45786966) { resolve(1); return; }
-          const tiffStart = offset + 8;
-          if (tiffStart + 8 > length) { resolve(1); return; }
-          const bigEndian = view.getUint16(tiffStart, false) === 0x4D4D;
-          if (view.getUint16(tiffStart + 2, bigEndian) !== 0x002A) { resolve(1); return; }
-          const firstIFDOffset = view.getUint32(tiffStart + 4, bigEndian);
-          if (firstIFDOffset < 8) { resolve(1); return; }
-          const ifdStart = tiffStart + firstIFDOffset;
-          if (ifdStart + 2 > length) { resolve(1); return; }
-          const entries = view.getUint16(ifdStart, bigEndian);
-          for (let i = 0; i < entries; i++) {
-            const entryOffset = ifdStart + 2 + i * 12;
-            if (entryOffset + 12 > length) break;
-            if (view.getUint16(entryOffset, bigEndian) === 0x0112) {
-              resolve(view.getUint16(entryOffset + 8, bigEndian));
-              return;
-            }
-          }
-          resolve(1); return;
-        } else if ((marker & 0xFF00) !== 0xFF00) { resolve(1); return; }
-        else {
-          if (offset + 2 > length) { resolve(1); return; }
-          offset += view.getUint16(offset, false);
-        }
+function flood(m,v,sx,sy,w,h){const st=[[sx,sy]];let a=0,nx=sx,mx=sx,ny=sy,my=sy;while(st.length&&a<50000){const[x,y]=st.pop();const i=y*w+x;if(x<0||x>=w||y<0||y>=h||v[i]||!m[i])continue;v[i]=1;a++;nx=Math.min(nx,x);mx=Math.max(mx,x);ny=Math.min(ny,y);my=Math.max(my,y);st.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]);}return{a,nx,mx,ny,my};}
+function merge(f){if(f.length<=1)return f;const r=[],u=new Set();for(let i=0;i<f.length;i++){if(u.has(i))continue;let b={...f[i]};u.add(i);for(let j=i+1;j<f.length;j++){if(u.has(j))continue;const c=f[j];if(b.x<c.x+c.w&&b.x+b.w>c.x&&b.y<c.y+c.h&&b.y+b.h>c.y){const nx=Math.min(b.x,c.x),ny=Math.min(b.y,c.y);b={x:nx,y:ny,w:Math.max(b.x+b.w,c.x+c.w)-nx,h:Math.max(b.y+b.h,c.y+c.h)-ny};u.add(j);}}r.push(b);}return r;}
+/* ===== EXIF ===== */
+async function getExifOrientation(blob){
+  return new Promise(resolve=>{
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const view=new DataView(e.target.result);
+      if(view.byteLength<2||view.getUint16(0,false)!==0xFFD8){resolve(1);return;}
+      let offset=2,length=view.byteLength;
+      while(offset<length){
+        if(offset+2>length){resolve(1);return;}
+        const marker=view.getUint16(offset,false);offset+=2;
+        if(marker===0xFFE1){
+          if(offset+10>length){resolve(1);return;}
+          if(view.getUint32(offset+2,false)!==0x45786966){resolve(1);return;}
+          const tiffStart=offset+8;if(tiffStart+8>length){resolve(1);return;}
+          const bigEndian=view.getUint16(tiffStart,false)===0x4D4D;
+          if(view.getUint16(tiffStart+2,bigEndian)!==0x002A){resolve(1);return;}
+          const firstIFDOffset=view.getUint32(tiffStart+4,bigEndian);if(firstIFDOffset<8){resolve(1);return;}
+          const ifdStart=tiffStart+firstIFDOffset;if(ifdStart+2>length){resolve(1);return;}
+          const entries=view.getUint16(ifdStart,bigEndian);
+          for(let i=0;i<entries;i++){const entryOffset=ifdStart+2+i*12;if(entryOffset+12>length)break;if(view.getUint16(entryOffset,bigEndian)===0x0112){resolve(view.getUint16(entryOffset+8,bigEndian));return;}}
+          resolve(1);return;
+        }else if((marker&0xFF00)!==0xFF00){resolve(1);return;}else{if(offset+2>length){resolve(1);return;}offset+=view.getUint16(offset,false);}
       }
       resolve(1);
     };
-    reader.onerror = () => resolve(1);
-    reader.readAsArrayBuffer(blob.slice(0, 128 * 1024));
+    reader.onerror=()=>resolve(1);
+    reader.readAsArrayBuffer(blob.slice(0,128*1024));
   });
 }
-
-function drawOriented(canvas, img, orientation) {
-  const ctx = canvas.getContext('2d');
-  const w = img.naturalWidth || img.width;
-  const h = img.naturalHeight || img.height;
-  if (orientation && orientation > 1) {
-    const swap = orientation >= 5;
-    canvas.width = swap ? h : w;
-    canvas.height = swap ? w : h;
-    ctx.save();
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    switch (orientation) {
-      case 2: ctx.scale(-1, 1); break;
-      case 3: ctx.rotate(Math.PI); break;
-      case 4: ctx.scale(1, -1); break;
-      case 5: ctx.rotate(Math.PI / 2); ctx.scale(-1, 1); break;
-      case 6: ctx.rotate(Math.PI / 2); break;
-      case 7: ctx.rotate(-Math.PI / 2); ctx.scale(-1, 1); break;
-      case 8: ctx.rotate(-Math.PI / 2); break;
-    }
-    ctx.drawImage(img, -w / 2, -h / 2);
-    ctx.restore();
-  } else {
-    canvas.width = w; canvas.height = h;
-    ctx.drawImage(img, 0, 0);
-  }
+function drawOriented(canvas,img,orientation){
+  const ctx=canvas.getContext('2d');const w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;
+  if(orientation&&orientation>1){const swap=orientation>=5;canvas.width=swap?h:w;canvas.height=swap?w:h;ctx.save();ctx.translate(canvas.width/2,canvas.height/2);
+    switch(orientation){case 2:ctx.scale(-1,1);break;case 3:ctx.rotate(Math.PI);break;case 4:ctx.scale(1,-1);break;case 5:ctx.rotate(Math.PI/2);ctx.scale(-1,1);break;case 6:ctx.rotate(Math.PI/2);break;case 7:ctx.rotate(-Math.PI/2);ctx.scale(-1,1);break;case 8:ctx.rotate(-Math.PI/2);break;}
+    ctx.drawImage(img,-w/2,-h/2);ctx.restore();
+  }else{canvas.width=w;canvas.height=h;ctx.drawImage(img,0,0);}
 }
-
-function getOrientedDims(img, orientation) {
-  const w = img.naturalWidth || img.width;
-  const h = img.naturalHeight || img.height;
-  if (orientation && orientation >= 5) return { w: h, h: w };
-  return { w, h };
+function getOrientedDims(img,orientation){const w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;if(orientation&&orientation>=5)return{w:h,h:w};return{w,h};}
+async function detectFaces(img,orientation){
+  const dc=document.createElement('canvas');drawOriented(dc,img,orientation);
+  const mode=S.faceMode;let faces=[];
+  if(mode==='real'||mode==='auto'){faces=await detectReal(dc);if(faces.length)return{faces,type:'real'};}
+  if(mode==='anime'||(mode==='auto'&&!faces.length)){const ac=document.createElement('canvas');faces=detectAnime(dc,ac);if(faces.length)return{faces,type:'anime'};}
+  return{faces:[],type:'none'};
 }
-
-async function detectFaces(img, orientation) {
-  // Create orientation-corrected canvas for detection
-  const detectCanvas = document.createElement('canvas');
-  drawOriented(detectCanvas, img, orientation);
-
-  const mode = S.faceMode; let faces = [];
-  if (mode === 'real' || mode === 'auto') {
-    faces = await detectReal(detectCanvas);
-    if (faces.length) return { faces, type: 'real' };
-  }
-  if (mode === 'anime' || (mode === 'auto' && !faces.length)) {
-    const animeCanvas = document.createElement('canvas');
-    faces = detectAnime(detectCanvas, animeCanvas);
-    if (faces.length) return { faces, type: 'anime' };
-  }
-  return { faces: [], type: 'none' };
+/* ===== Text Effect ===== */
+function applyTextEffect(ctx,txt,x,y,opts){
+  const{effect,fontSize:fs,wmColor}=opts;const sz=fs*(ctx.canvas.width/400);
+  if(effect.shadow3d){const depth=(effect.depth||6)*(ctx.canvas.width/400);const dc=effect.depthColor||'rgba(80,60,100,0.35)';ctx.fillStyle=dc;for(let i=depth;i>=1;i-=0.5){ctx.fillText(txt,x+i*0.7,y+i*0.7);}}
+  if(effect.shadow){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*(sz/24);ctx.shadowOffsetY=sh.oy*(sz/24);ctx.shadowBlur=sh.blur*(sz/24);ctx.shadowColor=sh.color;break;}}
+  if(effect.fillGrad){const grad=ctx.createLinearGradient(x-50*(sz/24),y,x+50*(sz/24),y);const stops=effect.fillGrad;stops.forEach((s,i)=>grad.addColorStop(i/(stops.length-1),s.c));ctx.fillStyle=grad;}
+  else if(effect.fill)ctx.fillStyle=effect.fill;
+  else if(effect.stampMode)ctx.fillStyle=wmColor||'#c0392b';
+  else ctx.fillStyle=wmColor;
+  ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;
+  if(effect.stroke){ctx.strokeStyle=effect.stroke.color;ctx.lineWidth=effect.stroke.width*(sz/24);ctx.lineJoin='round';if(effect.stampMode){ctx.strokeStyle=wmColor||'#c0392b';ctx.lineWidth=1.5*(sz/24);}ctx.strokeText(txt,x,y);}
+  if(effect.id==='glow'){for(const sh of effect.shadow){ctx.shadowOffsetX=sh.ox*(sz/24);ctx.shadowOffsetY=sh.oy*(sz/24);ctx.shadowBlur=sh.blur*(sz/24);ctx.shadowColor=sh.color;}ctx.fillStyle=effect.fillGrad?undefined:(effect.fill||wmColor);ctx.fillText(txt,x,y);ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.shadowBlur=0;}
 }
-
-/* ===== Text Effect Applier ===== */
-function applyTextEffect(ctx, txt, x, y, opts) {
-  const {effect, fontSize: fs, wmColor} = opts;
-  const sz = fs * (ctx.canvas.width/400);
-
-  if (effect.shadow3d) {
-    // 3D thick shadow
-    const depth = (effect.depth||6) * (ctx.canvas.width/400);
-    const dc = effect.depthColor || 'rgba(80,60,100,0.35)';
-    ctx.fillStyle = dc;
-    for (let i=depth; i>=1; i-=0.5) {
-      ctx.fillText(txt, x+i*0.7, y+i*0.7);
-    }
-  }
-
-  if (effect.shadow) {
-    for (const sh of effect.shadow) {
-      ctx.shadowOffsetX = sh.ox*(sz/24);
-      ctx.shadowOffsetY = sh.oy*(sz/24);
-      ctx.shadowBlur = sh.blur*(sz/24);
-      ctx.shadowColor = sh.color;
-      break; // Only first for shadow base
-    }
-  }
-
-  // Fill
-  if (effect.fillGrad) {
-    const grad = ctx.createLinearGradient(x-50*(sz/24), y, x+50*(sz/24), y);
-    const stops = effect.fillGrad;
-    stops.forEach((s,i)=> grad.addColorStop(i/(stops.length-1), s.c));
-    ctx.fillStyle = grad;
-  } else if (effect.fill) {
-    ctx.fillStyle = effect.fill;
-  } else if (effect.stampMode) {
-    ctx.fillStyle = wmColor || '#c0392b';
-  } else {
-    ctx.fillStyle = wmColor;
-  }
-
-  ctx.fillText(txt, x, y);
-
-  // Reset shadow
-  ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0; ctx.shadowBlur = 0;
-
-  // Stroke
-  if (effect.stroke) {
-    ctx.strokeStyle = effect.stroke.color;
-    ctx.lineWidth = effect.stroke.width * (sz/24);
-    ctx.lineJoin = 'round';
-    if (effect.stampMode) {
-      ctx.strokeStyle = wmColor || '#c0392b';
-      ctx.lineWidth = 1.5 * (sz/24);
-    }
-    ctx.strokeText(txt, x, y);
-  }
-
-  // For glow: draw a second pass
-  if (effect.id === 'glow') {
-    for (const sh of effect.shadow) {
-      ctx.shadowOffsetX = sh.ox*(sz/24);
-      ctx.shadowOffsetY = sh.oy*(sz/24);
-      ctx.shadowBlur = sh.blur*(sz/24);
-      ctx.shadowColor = sh.color;
-    }
-    ctx.fillStyle = effect.fillGrad ? undefined : (effect.fill || wmColor);
-    ctx.fillText(txt, x, y);
-    ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0; ctx.shadowBlur = 0;
-  }
-}
-
 /* ===== Watermark Render ===== */
-function drawTextWM(wx, w, h, txt, op, fs, an, mode, opts) {
-  wx.globalAlpha = op/100;
-  const sz = fs * (w/400);
-  const fontStr = `${sz}px ${opts.font ? opts.font.family : "-apple-system, sans-serif"}`;
-  wx.font = fontStr;
-  wx.textAlign = 'center'; wx.textBaseline = 'middle';
-
-  if(mode === 'tile') {
-    wx.save(); wx.translate(w/2, h/2); wx.rotate(an*Math.PI/180);
-    const tw = wx.measureText(txt).width, gx = tw + 60*(w/400), gy = sz*3.5, diag = Math.sqrt(w*w+h*h);
-    for(let y=-diag;y<diag;y+=gy) for(let x=-diag;x<diag;x+=gx) {
-      applyTextEffect(wx, txt, x, y, opts);
-    }
+function drawTextWM(wx,w,h,txt,op,fs,an,mode,opts){
+  wx.globalAlpha=op/100;
+  const sz=fs*(w/400);
+  const fontStr=`${sz}px ${opts.font?opts.font.family:'-apple-system,sans-serif'}`;
+  wx.font=fontStr;wx.textAlign='center';wx.textBaseline='middle';
+  if(mode==='tile'){
+    wx.save();wx.translate(w/2,h/2);wx.rotate(an*Math.PI/180);
+    const tw=wx.measureText(txt).width,gx=tw+60*(w/400),gy=sz*3.5,diag=Math.sqrt(w*w+h*h);
+    for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){applyTextEffect(wx,txt,x,y,opts);}
     wx.restore();
-  } else if(mode === 'center') {
-    applyTextEffect(wx, txt, w/2, h/2, opts);
+  }else if(mode==='center'){
+    applyTextEffect(wx,txt,w/2,h/2,opts);
+  }else if(mode==='stretch'){
+    // Stretch: single large text filling the canvas
+    const bigSz=Math.min(w,h)*0.8;
+    const bigFont=`${bigSz}px ${opts.font?opts.font.family:'-apple-system,sans-serif'}`;
+    wx.font=bigFont;
+    applyTextEffect(wx,txt,w/2,h/2,{...opts,fontSize:bigSz/(w/400)});
   }
 }
-
-function drawImageWM(wx, w, h, wmImg, op, imgSize, an, fill, spacing) {
-  wx.globalAlpha = op/100;
-  const ratio = wmImg.naturalWidth / wmImg.naturalHeight;
-  const iw = imgSize * (w/400), ih = iw / ratio;
-
-  if(fill === 'center') {
-    wx.save(); wx.translate(w/2, h/2); wx.rotate(an*Math.PI/180);
-    wx.drawImage(wmImg, -iw/2, -ih/2, iw, ih);
+function drawImageWM(wx,w,h,wmImg,op,fill,blend){
+  wx.globalAlpha=op/100;
+  if(blend&&blend!=='source-over')wx.globalCompositeOperation=blend;
+  if(fill==='center'){
+    const ratio=wmImg.naturalWidth/wmImg.naturalHeight;
+    const size=Math.min(w,h)*0.5;
+    wx.save();wx.translate(w/2,h/2);
+    wx.drawImage(wmImg,-size*ratio/2,-size/2,size*ratio,size);
     wx.restore();
-  } else if(fill === 'stretch') {
-    wx.drawImage(wmImg, 0, 0, w, h);
-  } else {
-    wx.save(); wx.translate(w/2, h/2); wx.rotate(an*Math.PI/180);
-    const gx = iw + spacing*(w/400), gy = ih + spacing*(w/400)*0.8;
-    const diag = Math.sqrt(w*w+h*h);
-    for(let y=-diag;y<diag;y+=gy) for(let x=-diag;x<diag;x+=gx) {
-      wx.drawImage(wmImg, x-iw/2, y-ih/2, iw, ih);
+  }else if(fill==='stretch'){
+    wx.drawImage(wmImg,0,0,w,h);
+  }else{
+    // tile
+    const ratio=wmImg.naturalWidth/wmImg.naturalHeight;
+    const iw=w*0.3,ih=iw/ratio;
+    const gx=iw*1.5,gy=ih*1.3;
+    wx.save();wx.translate(w/2,h/2);wx.rotate(-25*Math.PI/180);
+    const diag=Math.sqrt(w*w+h*h);
+    for(let y=-diag;y<diag;y+=gy)for(let x=-diag;x<diag;x+=gx){
+      wx.drawImage(wmImg,x-iw/2,y-ih/2,iw,ih);
     }
     wx.restore();
   }
+  wx.globalCompositeOperation='source-over';
 }
-
-function renderWM(canvas, img, faces, opts={}) {
-  const orientation = opts.orientation || 1;
-  const dims = getOrientedDims(img, orientation);
-  const w = dims.w, h = dims.h;
-
-  // Text watermark params
-  const textEnabled = opts.textWmEnabled !== undefined ? opts.textWmEnabled : S.textWmEnabled;
-  const tOp=opts.opacity??S.opacity, tAn=opts.angle??S.angle,
+function renderWM(canvas,img,faces,opts={}){
+  const orientation=opts.orientation||1;
+  const dims=getOrientedDims(img,orientation);
+  const w=dims.w,h=dims.h;
+  const textEnabled=opts.textWmEnabled!==undefined?opts.textWmEnabled:S.textWmEnabled;
+  const imgEnabled=opts.imgWmEnabled!==undefined?opts.imgWmEnabled:S.imgWmEnabled;
+  const tOp=opts.opacity??S.opacity,tAn=opts.angle??S.angle,
         tFill=opts.textFill??S.textFill??'tile',
         wmText=opts.wmText??S.wmText,
         fs=opts.fontSize??S.fontSize,
-        font=opts.font??S.font, effect=opts.effect??S.effect, wmColor=opts.wmColor??S.wmColor;
-
-  // Image watermark params
-  const imgEnabled = opts.imgWmEnabled !== undefined ? opts.imgWmEnabled : S.imgWmEnabled;
-  const iOp=opts.imgOpacity??S.imgOpacity, iAn=opts.imgAngle??S.imgAngle,
-        iFill=opts.imgFill??S.imgFill??'tile', iBlend=opts.imgBlend??S.imgBlend,
-        wmImg=opts.wmImg??S.wmImg, wmImgSize=opts.wmImgSize??S.wmImgSize,
-        iSpacing=opts.imgSpacing??S.imgSpacing;
-
+        font=opts.font??S.font,effect=opts.effect??S.effect,wmColor=opts.wmColor??S.wmColor;
+  const iOp=opts.imgOpacity??S.imgOpacity,
+        iFill=opts.imgFill??S.imgFill??'tile',
+        iBlend=opts.imgBlend??S.imgBlend,
+        wmImg=opts.wmImg??S.wmImg;
   const fe=opts.faceEnabled??S.faceEnabled,
-        be=opts.blurEnabled??S.blurEnabled, br=opts.blurRadius??S.blurRadius,
-        blend=opts.blend??S.blend, spacing=opts.spacing??S.spacing;
-
+        be=opts.blurEnabled??S.blurEnabled,br=opts.blurRadius??S.blurRadius,
+        blend=opts.blend??S.blend;
   const ctx=canvas.getContext('2d');
-  canvas.width=w; canvas.height=h;
-
-  // Draw base image with orientation correction
-  if (orientation > 1) {
-    drawOriented(canvas, img, orientation);
-  } else {
-    ctx.drawImage(img,0,0,w,h);
-  }
-
-  // Apply blur if enabled
-  if(be){
-    const bc=document.createElement('canvas');bc.width=w;bc.height=h;
-    const bx=bc.getContext('2d');bx.filter=`blur(${br}px)`;bx.drawImage(canvas,0,0);bx.filter='none';
-    ctx.drawImage(bc,0,0);
-  }
-
-  // Draw text watermark
-  let textWmCanvas = null;
-  if(textEnabled) {
+  canvas.width=w;canvas.height=h;
+  if(orientation>1)drawOriented(canvas,img,orientation);
+  else ctx.drawImage(img,0,0,w,h);
+  if(be){const bc=document.createElement('canvas');bc.width=w;bc.height=h;const bx=bc.getContext('2d');bx.filter=`blur(${br}px)`;bx.drawImage(canvas,0,0);bx.filter='none';ctx.drawImage(bc,0,0);}
+  let textWmCanvas=null;
+  if(textEnabled){
     textWmCanvas=document.createElement('canvas');textWmCanvas.width=w;textWmCanvas.height=h;
     const twx=textWmCanvas.getContext('2d');
-    const renderOpts = {font, effect, wmColor, fontSize:fs};
-    drawTextWM(twx, w, h, wmText, tOp, fs, tAn, tFill, renderOpts);
+    const renderOpts={font,effect,wmColor,fontSize:fs};
+    drawTextWM(twx,w,h,wmText,tOp,fs,tAn,tFill,renderOpts);
   }
-
-  // Draw image watermark
-  let imgWmCanvas = null;
-  if(imgEnabled && wmImg) {
+  let imgWmCanvas=null;
+  if(imgEnabled&&wmImg){
     imgWmCanvas=document.createElement('canvas');imgWmCanvas.width=w;imgWmCanvas.height=h;
     const iwx=imgWmCanvas.getContext('2d');
-    if(iBlend !== 'source-over') iwx.globalCompositeOperation = iBlend;
-    drawImageWM(iwx, w, h, wmImg, iOp, wmImgSize, iAn, iFill, iSpacing);
-    iwx.globalCompositeOperation = 'source-over';
+    drawImageWM(iwx,w,h,wmImg,iOp,iFill,iBlend);
   }
-
-  // Composite watermarks onto main canvas
-  if(textWmCanvas) {
-    if(blend !== 'source-over') ctx.globalCompositeOperation = blend;
-    ctx.drawImage(textWmCanvas, 0, 0);
-    ctx.globalCompositeOperation = 'source-over';
+  if(textWmCanvas){
+    if(blend!=='source-over')ctx.globalCompositeOperation=blend;
+    ctx.drawImage(textWmCanvas,0,0);ctx.globalCompositeOperation='source-over';
   }
-  if(imgWmCanvas) {
-    ctx.drawImage(imgWmCanvas, 0, 0);
+  if(imgWmCanvas){
+    ctx.drawImage(imgWmCanvas,0,0);
   }
-
-  // Face erasing - remove watermark from face areas
-  if(fe && faces.length) {
-    // Build combined watermark layer for face erasing
-    const combinedWm = document.createElement('canvas');
-    combinedWm.width=w; combinedWm.height=h;
-    const cwx = combinedWm.getContext('2d');
-    if(textWmCanvas) cwx.drawImage(textWmCanvas, 0, 0);
-    if(imgWmCanvas) cwx.drawImage(imgWmCanvas, 0, 0);
-
+  if(fe&&faces.length){
+    const combinedWm=document.createElement('canvas');combinedWm.width=w;combinedWm.height=h;
+    const cwx=combinedWm.getContext('2d');
+    if(textWmCanvas)cwx.drawImage(textWmCanvas,0,0);
+    if(imgWmCanvas)cwx.drawImage(imgWmCanvas,0,0);
     const mc=document.createElement('canvas');mc.width=w;mc.height=h;
-    const mx=mc.getContext('2d');
-    mx.drawImage(combinedWm,0,0);
+    const mx=mc.getContext('2d');mx.drawImage(combinedWm,0,0);
     mx.globalCompositeOperation='destination-out';
     for(const f of faces){
       const cx=f.x+f.w/2,cy=f.y+f.h/2,rx=f.w*.75,ry=f.h*.85,mr=Math.max(rx,ry);
       const gd=mx.createRadialGradient(cx,cy,0,cx,cy,mr);
-      gd.addColorStop(0,'rgba(0,0,0,1)');gd.addColorStop(.6,'rgba(0,0,0,0.9)');
-      gd.addColorStop(.85,'rgba(0,0,0,0.3)');gd.addColorStop(1,'rgba(0,0,0,0)');
+      gd.addColorStop(0,'rgba(0,0,0,1)');gd.addColorStop(.6,'rgba(0,0,0,0.9)');gd.addColorStop(.85,'rgba(0,0,0,0.3)');gd.addColorStop(1,'rgba(0,0,0,0)');
       mx.save();mx.translate(cx,cy);mx.scale(rx/mr,ry/mr);mx.translate(-cx,-cy);
       mx.fillStyle=gd;mx.fillRect(cx-mr*1.5,cy-mr*1.5,mr*3,mr*3);mx.restore();
     }
-
-    // Now re-composite: draw clean base image, then draw watermark with face holes
-    const cleanBase = document.createElement('canvas');
-    cleanBase.width=w; cleanBase.height=h;
-    const cbx = cleanBase.getContext('2d');
-    if(orientation > 1) {
-      drawOriented(cleanBase, img, orientation);
-    } else {
-      cbx.drawImage(img,0,0,w,h);
-    }
-
-    // The mask: where faces are, show clean base; elsewhere show watermark
-    // Strategy: draw clean base, then overlay watermark with face areas punched out
-    ctx.clearRect(0,0,w,h);
-    ctx.drawImage(cleanBase,0,0);
-    // Draw the watermarked version on top, but with face areas transparent
-    // We need: result = base + watermark * (1 - faceMask)
-    // mc already has watermark with face areas removed (destination-out)
-    ctx.drawImage(mc,0,0);
+    const cleanBase=document.createElement('canvas');cleanBase.width=w;cleanBase.height=h;
+    const cbx=cleanBase.getContext('2d');
+    if(orientation>1)drawOriented(cleanBase,img,orientation);else cbx.drawImage(img,0,0,w,h);
+    ctx.clearRect(0,0,w,h);ctx.drawImage(cleanBase,0,0);ctx.drawImage(mc,0,0);
   }
   return canvas;
 }
-
 /* ===== Import ===== */
 $('importZone').onclick=()=>$('fileInput').click();
 $('importZone').ondragover=e=>{e.preventDefault();$('importZone').classList.add('over')};
 $('importZone').ondragleave=()=>$('importZone').classList.remove('over');
 $('importZone').ondrop=e=>{e.preventDefault();$('importZone').classList.remove('over');handleFiles(e.dataTransfer.files)};
 $('fileInput').onchange=()=>{handleFiles($('fileInput').files);$('fileInput').value=''};
-
 async function handleFiles(files){
-  const imgs=Array.from(files).filter(f=>f.type.startsWith('image/'));
-  if(!imgs.length)return;
+  const imgs=Array.from(files).filter(f=>f.type.startsWith('image/'));if(!imgs.length)return;
+  setStatus('导入中...',false);
   for(const f of imgs){
-    const img=new Image();img.src=URL.createObjectURL(f);
-    await new Promise(r=>img.onload=r);
-    const orientation = await getExifOrientation(f);
-    S.images.push({id:++uid,file:f,img,name:f.name,faces:[],rendered:null,orientation});
+    const img=new Image();img.src=URL.createObjectURL(f);await new Promise(r=>img.onload=r);
+    const orientation=await getExifOrientation(f);
+    S.images.push({id:++uid,file:f,img,name:f.name,faces:[],rendered:null,orientation,faceDetectStatus:'pending'});
   }
   updateGrid();updateBtn();
+  // Auto detect faces after import
+  if(S.faceEnabled&&S.modelsLoaded){
+    await autoDetectAll();
+  }else if(S.faceEnabled&&!S.modelsLoaded){
+    setStatus('模型未加载，人脸检测不可用',false);
+  }
 }
-
+async function autoDetectAll(){
+  const pending=S.images.filter(i=>i.faceDetectStatus==='pending');
+  if(!pending.length)return;
+  setStatus('检测人脸中 (0/'+pending.length+')',false);
+  for(let idx=0;idx<pending.length;idx++){
+    const item=pending[idx];
+    const badge=document.getElementById(`gb-${item.id}`);
+    if(badge){badge.textContent='检测中...';badge.className='grid-badge detecting';}
+    try{
+      const r=await detectFaces(item.img,item.orientation);
+      item.faces=r.faces;
+      item.faceDetectStatus='done';
+      if(badge){
+        if(r.faces.length){badge.textContent=r.faces.length+'张脸';badge.className='grid-badge done';}
+        else{badge.textContent='无人脸';badge.className='grid-badge';}
+      }
+    }catch(e){
+      console.warn('Face detection error for',item.name,e);
+      item.faceDetectStatus='error';
+      if(badge){badge.textContent='检测失败';badge.className='grid-badge';}
+    }
+    setStatus(`检测人脸中 (${idx+1}/${pending.length})`,false);
+  }
+  const totalFaces=S.images.reduce((s,i)=>s+i.faces.length,0);
+  if(totalFaces>0)setStatus(`检测到 ${totalFaces} 张脸`,true);
+  else setStatus('未检测到人脸',false);
+}
 function updateGrid(){
   const n=S.images.length;
   if(!n){$('imageGrid').classList.add('hidden');$('gridCount').classList.add('hidden');return;}
   $('imageGrid').classList.remove('hidden');$('gridCount').classList.remove('hidden');
-  $('gridCount').textContent=`已导入 ${n} 张图片`;
-  $('imageGrid').innerHTML=S.images.map(i=>`
-    <div class="grid-item" data-id="${i.id}">
-      <img src="${i.img.src}">
-      <div class="grid-badge ${i.rendered?'done':''}" id="gb-${i.id}">${i.rendered?'已处理':'待处理'}</div>
-      <button class="grid-del" onclick="event.stopPropagation();rmImg(${i.id})">&#10005;</button>
-    </div>`).join('');
-  $('imageGrid').querySelectorAll('.grid-item').forEach(el=>{
-    el.onclick=()=>openEdit(+el.dataset.id);
-  });
+  const totalFaces=S.images.reduce((s,i)=>s+i.faces.length,0);
+  $('gridCount').textContent=`已导入 ${n} 张图片`+(totalFaces?` - 共${totalFaces}张脸`:'');
+  $('imageGrid').innerHTML=S.images.map(i=>{
+    let badgeText,badgeClass;
+    if(i.rendered){badgeText='已处理';badgeClass='done';}
+    else if(i.faceDetectStatus==='done'){badgeText=i.faces.length?i.faces.length+'张脸':'无人脸';badgeClass=i.faces.length?'done':'';}
+    else if(i.faceDetectStatus==='pending'){badgeText='待检测';badgeClass='';}
+    else if(i.faceDetectStatus==='error'){badgeText='检测失败';badgeClass='';}
+    else{badgeText='待处理';badgeClass='';}
+    return `<div class="grid-item" data-id="${i.id}"><img src="${i.img.src}"><div class="grid-badge ${badgeClass}" id="gb-${i.id}">${badgeText}</div><button class="grid-del" onclick="event.stopPropagation();rmImg(${i.id})">&#10005;</button></div>`;
+  }).join('');
+  $('imageGrid').querySelectorAll('.grid-item').forEach(el=>{el.onclick=()=>openEdit(+el.dataset.id);});
 }
 function rmImg(id){S.images=S.images.filter(i=>i.id!==id);updateGrid();updateBtn();}
 window.rmImg=rmImg;
 function updateBtn(){$('btnExport').disabled=!S.images.length||S.processing;}
-
-/* ===== WM Type Toggles ===== */
-$('toggleTextWm').onchange = e => {
-  S.textWmEnabled = e.target.checked;
-  $('textWmSection').classList.toggle('hidden', !e.target.checked);
-};
-$('toggleImgWm').onchange = e => {
-  S.imgWmEnabled = e.target.checked;
-  $('imageWmSection').classList.toggle('hidden', !e.target.checked);
-};
-
-/* ===== Text Fill ===== */
-$('fillRow').onclick = e => {
-  const o = e.target.closest('.fill-opt'); if (!o) return;
-  $('fillRow').querySelectorAll('.fill-opt').forEach(x => x.classList.remove('active'));
-  o.classList.add('active'); S.textFill = o.dataset.fill;
-};
-
-/* ===== Image Fill ===== */
-$('imgFillRow').onclick = e => {
-  const o = e.target.closest('.fill-opt'); if (!o) return;
-  $('imgFillRow').querySelectorAll('.fill-opt').forEach(x => x.classList.remove('active'));
-  o.classList.add('active'); S.imgFill = o.dataset.fill;
-};
-
-/* ===== Image Blend ===== */
-$('imgBlendTabs').onclick = e => {
-  const t = e.target.closest('.tab'); if (!t) return;
-  $('imgBlendTabs').querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-  t.classList.add('active'); S.imgBlend = t.dataset.blend;
-};
-
+/* ===== Toggles ===== */
+$('toggleTextWm').onchange=e=>{S.textWmEnabled=e.target.checked;$('textWmSection').classList.toggle('hidden',!e.target.checked);};
+$('toggleImgWm').onchange=e=>{S.imgWmEnabled=e.target.checked;$('imageWmSection').classList.toggle('hidden',!e.target.checked);};
+$('toggleFace').onchange=e=>{S.faceEnabled=e.target.checked;$('faceModeWrap').style.opacity=e.target.checked?'1':'.35';$('faceModeWrap').style.pointerEvents=e.target.checked?'auto':'none';};
+$('faceModeTabs').onclick=e=>{const t=e.target.closest('.tab');if(!t)return;$('faceModeTabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');S.faceMode=t.dataset.mode;};
+$('toggleBlur').onchange=e=>{S.blurEnabled=e.target.checked;$('blurRow').style.opacity=e.target.checked?'1':'.35';$('blurRow').style.pointerEvents=e.target.checked?'auto':'none';};
+/* ===== Fill ===== */
+$('fillRow').onclick=e=>{const o=e.target.closest('.fill-opt');if(!o)return;$('fillRow').querySelectorAll('.fill-opt').forEach(x=>x.classList.remove('active'));o.classList.add('active');S.textFill=o.dataset.fill;};
+$('imgFillRow').onclick=e=>{const o=e.target.closest('.fill-opt');if(!o)return;$('imgFillRow').querySelectorAll('.fill-opt').forEach(x=>x.classList.remove('active'));o.classList.add('active');S.imgFill=o.dataset.fill;};
+/* ===== Blend ===== */
+$('blendTabs').onclick=e=>{const t=e.target.closest('.tab');if(!t)return;$('blendTabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');S.blend=t.dataset.blend;};
+$('imgBlendTabs').onclick=e=>{const t=e.target.closest('.tab');if(!t)return;$('imgBlendTabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');S.imgBlend=t.dataset.blend;};
 /* ===== WM Image Upload ===== */
 $('wmImgZone').onclick=()=>{if(!S.wmImg)$('wmImgInput').click()};
 $('wmImgInput').onclick=e=>{e.stopPropagation();};
@@ -1077,94 +768,129 @@ $('wmImgInput').onchange=e=>{
   const img=new Image();img.src=URL.createObjectURL(f);
   img.onload=()=>{
     S.wmImg=img;S.wmImgData=f.name;
-    const thumb=$('wmImgThumb');
-    thumb.classList.add('has-img');
-    thumb.querySelector('.ph').style.display='none';
+    const thumb=$('wmImgThumb');thumb.classList.add('has-img');thumb.querySelector('.ph').style.display='none';
     const oldImg=thumb.querySelector('img');if(oldImg)oldImg.remove();
     const ti=document.createElement('img');ti.src=img.src;thumb.insertBefore(ti,thumb.firstChild);
-    $('wmImgClear').style.display='flex';
-    $('wmImgName').textContent=f.name;
+    $('wmImgClear').style.display='flex';$('wmImgName').textContent=f.name;
   };
   $('wmImgInput').value='';
 };
 $('wmImgClear').onclick=e=>{
-  e.stopPropagation();
-  S.wmImg=null;S.wmImgData=null;
-  const thumb=$('wmImgThumb');
-  thumb.classList.remove('has-img');
+  e.stopPropagation();S.wmImg=null;S.wmImgData=null;
+  const thumb=$('wmImgThumb');thumb.classList.remove('has-img');
   const ti=thumb.querySelector('img');if(ti)ti.remove();
-  thumb.querySelector('.ph').style.display='';
-  $('wmImgClear').style.display='none';
-  $('wmImgName').textContent='未选择水印图片';
+  thumb.querySelector('.ph').style.display='';$('wmImgClear').style.display='none';$('wmImgName').textContent='未选择水印图片';
 };
-
-/* ===== Color ===== */
+/* ===== Inputs ===== */
+$('wmText').oninput=e=>{S.wmText=e.target.value;};
 $('wmColor').oninput=e=>{S.wmColor=e.target.value;};
-
+/* ===== Sliders ===== */
+function updateSliderTrack(s){const p=((s.value-s.min)/(s.max-s.min))*100;s.style.background=`linear-gradient(90deg,rgba(168,216,255,.5) 0%,rgba(248,215,232,.5) ${p*.5}%,rgba(200,176,240,.5) ${p}%,rgba(0,0,0,.055) ${p}%)`;}
+$('opacitySlider').oninput=e=>{S.opacity=+e.target.value;$('opacityVal').textContent=e.target.value+'%';updateSliderTrack(e.target);};
+$('sizeSlider').oninput=e=>{S.fontSize=+e.target.value;$('sizeVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
+$('angleSlider').oninput=e=>{S.angle=+e.target.value;$('angleVal').textContent=e.target.value+'\u00B0';updateSliderTrack(e.target);};
+$('imgOpacitySlider').oninput=e=>{S.imgOpacity=+e.target.value;$('imgOpacityVal').textContent=e.target.value+'%';updateSliderTrack(e.target);};
+$('blurSlider').oninput=e=>{S.blurRadius=+e.target.value;$('blurVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
+$('fmtRow').onclick=e=>{const o=e.target.closest('.fmt-opt');if(!o)return;$('fmtRow').querySelectorAll('.fmt-opt').forEach(x=>x.classList.remove('active'));o.classList.add('active');S.format=o.dataset.fmt;};
+document.querySelectorAll('.slider').forEach(updateSliderTrack);
+/* ===== Templates ===== */
+function getTemplateFromState(){
+  return{
+    textWmEnabled:S.textWmEnabled,imgWmEnabled:S.imgWmEnabled,
+    wmText:S.wmText,textFill:S.textFill,imgFill:S.imgFill,
+    blend:S.blend,imgBlend:S.imgBlend,
+    fontIdx:FONTS.indexOf(S.font),effectIdx:EFFECTS.indexOf(S.effect),wmColor:S.wmColor,
+    opacity:S.opacity,fontSize:S.fontSize,angle:S.angle,
+    imgOpacity:S.imgOpacity,
+    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius,faceEnabled:S.faceEnabled,faceMode:S.faceMode
+  };
+}
+function applyTemplate(t){
+  S.textWmEnabled=t.textWmEnabled;S.imgWmEnabled=t.imgWmEnabled;
+  $('toggleTextWm').checked=t.textWmEnabled;$('textWmSection').classList.toggle('hidden',!t.textWmEnabled);
+  $('toggleImgWm').checked=t.imgWmEnabled;$('imageWmSection').classList.toggle('hidden',!t.imgWmEnabled);
+  S.wmText=t.wmText;$('wmText').value=t.wmText;
+  S.textFill=t.textFill;S.imgFill=t.imgFill;
+  $('fillRow').querySelectorAll('.fill-opt').forEach(x=>{x.classList.toggle('active',x.dataset.fill===t.textFill);});
+  $('imgFillRow').querySelectorAll('.fill-opt').forEach(x=>{x.classList.toggle('active',x.dataset.fill===t.imgFill);});
+  S.blend=t.blend;S.imgBlend=t.imgBlend;
+  $('blendTabs').querySelectorAll('.tab').forEach(x=>{x.classList.toggle('active',x.dataset.blend===t.blend);});
+  $('imgBlendTabs').querySelectorAll('.tab').forEach(x=>{x.classList.toggle('active',x.dataset.blend===t.imgBlend);});
+  if(t.fontIdx>=0&&t.fontIdx<FONTS.length)S.font=FONTS[t.fontIdx];
+  if(t.effectIdx>=0&&t.effectIdx<EFFECTS.length)S.effect=EFFECTS[t.effectIdx];
+  S.wmColor=t.wmColor;S.opacity=t.opacity;S.fontSize=t.fontSize;S.angle=t.angle;
+  S.imgOpacity=t.imgOpacity;S.blurEnabled=t.blurEnabled;S.blurRadius=t.blurRadius;
+  S.faceEnabled=t.faceEnabled;S.faceMode=t.faceMode;
+  $('toggleFace').checked=t.faceEnabled;$('faceModeWrap').style.opacity=t.faceEnabled?'1':'.35';$('faceModeWrap').style.pointerEvents=t.faceEnabled?'auto':'none';
+  $('toggleBlur').checked=t.blurEnabled;$('blurRow').style.opacity=t.blurEnabled?'1':'.35';$('blurRow').style.pointerEvents=t.blurEnabled?'auto':'none';
+  $('wmColor').value=S.wmColor;
+  $('opacitySlider').value=S.opacity;$('opacityVal').textContent=S.opacity+'%';updateSliderTrack($('opacitySlider'));
+  $('sizeSlider').value=S.fontSize;$('sizeVal').textContent=S.fontSize+'px';updateSliderTrack($('sizeSlider'));
+  $('angleSlider').value=S.angle;$('angleVal').textContent=S.angle+'\u00B0';updateSliderTrack($('angleSlider'));
+  $('imgOpacitySlider').value=S.imgOpacity;$('imgOpacityVal').textContent=S.imgOpacity+'%';updateSliderTrack($('imgOpacitySlider'));
+  $('blurSlider').value=S.blurRadius;$('blurVal').textContent=S.blurRadius+'px';updateSliderTrack($('blurSlider'));
+  $('fontPicker').querySelectorAll('.font-chip').forEach((c,i)=>{c.classList.toggle('active',i===t.fontIdx);});
+  $('effectRow').querySelectorAll('.effect-chip').forEach((c,i)=>{c.classList.toggle('active',i===t.effectIdx);});
+  $('faceModeTabs').querySelectorAll('.tab').forEach(x=>{x.classList.toggle('active',x.dataset.mode===t.faceMode);});
+}
+$('btnSaveTpl').onclick=()=>{
+  const name=$('tplName').value.trim();if(!name){$('tplName').focus();return;}
+  const tpl={id:Date.now(),name,date:new Date().toLocaleDateString('zh-CN'),data:getTemplateFromState()};
+  S.templates.unshift(tpl);localStorage.setItem('wm_templates',JSON.stringify(S.templates));
+  $('tplName').value='';renderTemplates();setStatus('模板已保存',true);
+};
+function renderTemplates(){
+  const el=$('tplList');
+  if(!S.templates.length){el.innerHTML='<div class="tpl-empty">暂无模板</div>';return;}
+  el.innerHTML=S.templates.map(t=>`<div class="tpl-item" data-id="${t.id}"><span class="tpl-item-name">${t.name}</span><span class="tpl-item-meta">${t.date}</span><button class="tpl-item-del" data-del="${t.id}">&#10005;</button></div>`).join('');
+  el.onclick=e=>{
+    const del=e.target.closest('[data-del]');
+    if(del){e.stopPropagation();S.templates=S.templates.filter(t=>t.id!==+del.dataset.del);localStorage.setItem('wm_templates',JSON.stringify(S.templates));renderTemplates();return;}
+    const item=e.target.closest('.tpl-item');if(!item)return;
+    const tpl=S.templates.find(t=>t.id===+item.dataset.id);if(tpl)applyTemplate(tpl.data);
+  };
+}
+renderTemplates();
 /* ===== Edit View ===== */
-let editDebounce = null;
-
+let editDebounce=null;
 function openEdit(id){
   const item=S.images.find(i=>i.id===id);if(!item)return;
-  S.editingId=id;
-  $('listView').classList.add('hidden');
-  $('editView').classList.remove('hidden');
-
+  S.editingId=id;$('listView').classList.add('hidden');$('editView').classList.remove('hidden');
   $('editTitle').textContent=item.name;
   $('editWmText').value=S.wmText;
   $('editOpacitySlider').value=S.opacity;$('editOpacityVal').textContent=S.opacity+'%';
   $('editSizeSlider').value=S.fontSize;$('editSizeVal').textContent=S.fontSize+'px';
   $('editAngleSlider').value=S.angle;$('editAngleVal').textContent=S.angle+'\u00B0';
-  $('editSpacingSlider').value=S.spacing;$('editSpacingVal').textContent=S.spacing+'px';
+  $('editSpacingSlider').value=180;$('editSpacingVal').textContent='180px';
   $('editToggleFace').checked=S.faceEnabled;
-
-  updateSliderTrack($('editOpacitySlider'));
-  updateSliderTrack($('editSizeSlider'));
-  updateSliderTrack($('editAngleSlider'));
-  updateSliderTrack($('editSpacingSlider'));
-
+  updateSliderTrack($('editOpacitySlider'));updateSliderTrack($('editSizeSlider'));
+  updateSliderTrack($('editAngleSlider'));updateSliderTrack($('editSpacingSlider'));
   renderEditPreview(item);
 }
-
 function renderEditPreview(item){
   if(!item)item=S.images.find(i=>i.id===S.editingId);if(!item)return;
-
   const opts={
-    opacity:+$('editOpacitySlider').value,
-    fontSize:+$('editSizeSlider').value,
+    opacity:+$('editOpacitySlider').value,fontSize:+$('editSizeSlider').value,
     angle:+$('editAngleSlider').value,
-    spacing:+$('editSpacingSlider').value,
-    wmText:$('editWmText').value||'[Love]',
-    faceEnabled:$('editToggleFace').checked,
-    textWmEnabled:S.textWmEnabled, imgWmEnabled:S.imgWmEnabled,
-    textFill:S.textFill, imgFill:S.imgFill,
-    imgOpacity:S.imgOpacity, wmImg:S.wmImg, wmImgSize:S.wmImgSize,
-    imgAngle:S.imgAngle, imgSpacing:S.imgSpacing, imgBlend:S.imgBlend,
-    blend:S.blend,font:S.font,effect:S.effect,wmColor:S.wmColor,
-    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius,
-    orientation:item.orientation
+    wmText:$('editWmText').value||'[Love]',faceEnabled:$('editToggleFace').checked,
+    textWmEnabled:S.textWmEnabled,imgWmEnabled:S.imgWmEnabled,
+    textFill:S.textFill,imgFill:S.imgFill,
+    imgOpacity:S.imgOpacity,wmImg:S.wmImg,
+    imgBlend:S.imgBlend,blend:S.blend,font:S.font,effect:S.effect,wmColor:S.wmColor,
+    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius,orientation:item.orientation
   };
-
-  const canvas=document.createElement('canvas');
-  renderWM(canvas,item.img,item.faces,opts);
-
-  const preview=$('editPreview');
-  preview.querySelectorAll('.face-mark').forEach(e=>e.remove());
-
+  const canvas=document.createElement('canvas');renderWM(canvas,item.img,item.faces,opts);
+  const preview=$('editPreview');preview.querySelectorAll('.face-mark').forEach(e=>e.remove());
   $('editImg').src=canvas.toDataURL('image/png');
-
   const info=item.faces.length?`检测到 ${item.faces.length} 张脸`:'未检测到人脸';
   $('editFaceInfo').textContent=info;
   $('editModeTag').textContent=S.faceMode==='auto'?'自动':S.faceMode==='real'?'真人':'动漫';
   $('editStatus').textContent=item.rendered?'已处理':'未处理';
-
   $('editImg').onload=()=>{
     if(item.faces.length&&opts.faceEnabled){
       const iw=$('editImg').clientWidth,ih=$('editImg').clientHeight;
-      const dims=getOrientedDims(item.img,item.orientation);
-      const nw=dims.w,nh=dims.h;
-      const scale=Math.min(iw/nw,ih/nh);
-      const ox=(iw-nw*scale)/2,oy=(ih-nh*scale)/2;
+      const dims=getOrientedDims(item.img,item.orientation);const nw=dims.w,nh=dims.h;
+      const scale=Math.min(iw/nw,ih/nh);const ox=(iw-nw*scale)/2,oy=(ih-nh*scale)/2;
       for(const f of item.faces){
         const mark=document.createElement('div');mark.className='face-mark';
         mark.style.left=(ox+f.x*scale)+'px';mark.style.top=(oy+f.y*scale)+'px';
@@ -1174,56 +900,29 @@ function renderEditPreview(item){
     }
   };
 }
-
-$('backBtn').onclick=()=>{
-  $('editView').classList.add('hidden');
-  $('listView').classList.remove('hidden');
-  S.editingId=null;
-};
-
+$('backBtn').onclick=()=>{$('editView').classList.add('hidden');$('listView').classList.remove('hidden');S.editingId=null;};
 function bindEditSlider(sliderId,valId,suffix){
-  $(sliderId).oninput=()=>{
-    $(valId).textContent=$(sliderId).value+suffix;
-    updateSliderTrack($(sliderId));
-    clearTimeout(editDebounce);
-    editDebounce=setTimeout(()=>{
-      const item=S.images.find(i=>i.id===S.editingId);
-      if(item)renderEditPreview(item);
-    },200);
-  };
+  $(sliderId).oninput=()=>{$(valId).textContent=$(sliderId).value+suffix;updateSliderTrack($(sliderId));
+    clearTimeout(editDebounce);editDebounce=setTimeout(()=>{const item=S.images.find(i=>i.id===S.editingId);if(item)renderEditPreview(item);},200);};
 }
 bindEditSlider('editOpacitySlider','editOpacityVal','%');
 bindEditSlider('editSizeSlider','editSizeVal','px');
 bindEditSlider('editAngleSlider','editAngleVal','\u00B0');
 bindEditSlider('editSpacingSlider','editSpacingVal','px');
-
-$('editWmText').oninput=()=>{
-  clearTimeout(editDebounce);
-  editDebounce=setTimeout(()=>{const item=S.images.find(i=>i.id===S.editingId);if(item)renderEditPreview(item);},300);
-};
-$('editToggleFace').onchange=()=>{
-  const item=S.images.find(i=>i.id===S.editingId);if(item)renderEditPreview(item);
-};
-
-$('editRedetect').onclick=async()=>{
-  const item=S.images.find(i=>i.id===S.editingId);if(!item)return;
-  $('editStatus').textContent='检测中...';
-  const r=await detectFaces(item.img,item.orientation);item.faces=r.faces;renderEditPreview(item);
-};
-
+$('editWmText').oninput=()=>{clearTimeout(editDebounce);editDebounce=setTimeout(()=>{const item=S.images.find(i=>i.id===S.editingId);if(item)renderEditPreview(item);},300);};
+$('editToggleFace').onchange=()=>{const item=S.images.find(i=>i.id===S.editingId);if(item)renderEditPreview(item);};
+$('editRedetect').onclick=async()=>{const item=S.images.find(i=>i.id===S.editingId);if(!item)return;$('editStatus').textContent='检测中...';const r=await detectFaces(item.img,item.orientation);item.faces=r.faces;renderEditPreview(item);};
 $('editSave').onclick=()=>{
   const item=S.images.find(i=>i.id===S.editingId);if(!item)return;
   const opts={
     opacity:+$('editOpacitySlider').value,fontSize:+$('editSizeSlider').value,
-    angle:+$('editAngleSlider').value,spacing:+$('editSpacingSlider').value,
+    angle:+$('editAngleSlider').value,
     wmText:$('editWmText').value||'[Love]',faceEnabled:$('editToggleFace').checked,
-    textWmEnabled:S.textWmEnabled, imgWmEnabled:S.imgWmEnabled,
-    textFill:S.textFill, imgFill:S.imgFill,
-    imgOpacity:S.imgOpacity, wmImg:S.wmImg, wmImgSize:S.wmImgSize,
-    imgAngle:S.imgAngle, imgSpacing:S.imgSpacing, imgBlend:S.imgBlend,
-    blend:S.blend,font:S.font,effect:S.effect,wmColor:S.wmColor,
-    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius,
-    orientation:item.orientation
+    textWmEnabled:S.textWmEnabled,imgWmEnabled:S.imgWmEnabled,
+    textFill:S.textFill,imgFill:S.imgFill,
+    imgOpacity:S.imgOpacity,wmImg:S.wmImg,
+    imgBlend:S.imgBlend,blend:S.blend,font:S.font,effect:S.effect,wmColor:S.wmColor,
+    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius,orientation:item.orientation
   };
   const c=document.createElement('canvas');renderWM(c,item.img,item.faces,opts);
   item.rendered=c.toDataURL(mimeMap[S.format],0.92);item._opts={...opts};
@@ -1231,92 +930,39 @@ $('editSave').onclick=()=>{
   a.download=item.name.replace(/\.[^.]+$/,'')+'_wm.'+extMap[S.format];a.click();
   $('editStatus').textContent='已保存';updateGrid();
 };
-
 /* ===== Preview ===== */
 $('btnPreview').onclick=async()=>{
-  if(!S.images.length)return;
-  const item=S.images[0];setStatus('预览生成中...',false);
+  if(!S.images.length)return;const item=S.images[0];setStatus('预览生成中...',false);
   if(S.faceEnabled&&!item.faces.length){const r=await detectFaces(item.img,item.orientation);item.faces=r.faces;}
-  const c=document.createElement('canvas');
-  renderWM(c,item.img,item.faces,{orientation:item.orientation});
-  window.open(c.toDataURL('image/png'),'_blank');
-  setStatus('预览完成',true);
+  const c=document.createElement('canvas');renderWM(c,item.img,item.faces,{orientation:item.orientation});
+  window.open(c.toDataURL('image/png'),'_blank');setStatus('预览完成',true);
 };
-
 /* ===== Export ===== */
 const mimeMap={png:'image/png',jpg:'image/jpeg',webp:'image/webp'};
 const extMap={png:'png',jpg:'jpg',webp:'webp'};
-
 $('btnExport').onclick=async()=>{
   if(!S.images.length||S.processing)return;
   S.processing=true;updateBtn();$('pbar').classList.add('on');$('pfill').style.width='0%';setStatus('处理中...',false);
-
   const zip=new JSZip();const total=S.images.length;
-
   for(let i=0;i<total;i++){
     const item=S.images[i];
     const badge=document.getElementById(`gb-${item.id}`);
     if(badge){badge.textContent='检测中';badge.className='grid-badge detecting';}
-
     if(S.faceEnabled&&!item.faces.length){const r=await detectFaces(item.img,item.orientation);item.faces=r.faces;}
     if(badge)badge.textContent='渲染中';
-
-    const opts=item._opts||{};
-    opts.orientation=item.orientation;
-    const c=document.createElement('canvas');
-    renderWM(c,item.img,item.faces,opts);
-
+    const opts=item._opts||{};opts.orientation=item.orientation;
+    const c=document.createElement('canvas');renderWM(c,item.img,item.faces,opts);
     const blob=await new Promise(r=>c.toBlob(r,mimeMap[S.format],0.92));
     zip.file(item.name.replace(/\.[^.]+$/,'')+'_wm.'+extMap[S.format],blob);
-
-    item.rendered=true;
-    if(badge){badge.textContent='完成';badge.className='grid-badge done';}
+    item.rendered=true;if(badge){badge.textContent='完成';badge.className='grid-badge done';}
     $('pfill').style.width=((i+1)/total*100)+'%';
   }
-
   setStatus('打包中...',false);
   const zb=await zip.generateAsync({type:'blob'});
   const u=URL.createObjectURL(zb);const a=document.createElement('a');a.href=u;
   a.download=`watermarked_${Date.now()}.zip`;a.click();URL.revokeObjectURL(u);
-
   S.processing=false;updateBtn();$('pbar').classList.remove('on');setStatus('导出完成',true);
 };
-
-/* ===== Global UI ===== */
-$('toggleFace').onchange=e=>{S.faceEnabled=e.target.checked;
-  $('faceModeWrap').style.opacity=e.target.checked?'1':'.35';
-  $('faceModeWrap').style.pointerEvents=e.target.checked?'auto':'none';};
-
-$('faceModeTabs').onclick=e=>{const t=e.target.closest('.tab');if(!t)return;
-  $('faceModeTabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');S.faceMode=t.dataset.mode;};
-
-$('wmText').oninput=e=>{S.wmText=e.target.value;};
-
-function updateSliderTrack(s){
-  const p=((s.value-s.min)/(s.max-s.min))*100;
-  s.style.background=`linear-gradient(90deg,rgba(168,216,255,.5) 0%,rgba(248,215,232,.5) ${p*.5}%,rgba(200,176,240,.5) ${p}%,rgba(0,0,0,.055) ${p}%)`;
-}
-
-$('opacitySlider').oninput=e=>{S.opacity=+e.target.value;$('opacityVal').textContent=e.target.value+'%';updateSliderTrack(e.target);};
-$('sizeSlider').oninput=e=>{S.fontSize=+e.target.value;$('sizeVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
-$('angleSlider').oninput=e=>{S.angle=+e.target.value;$('angleVal').textContent=e.target.value+'\u00B0';updateSliderTrack(e.target);};
-$('imgOpacitySlider').oninput=e=>{S.imgOpacity=+e.target.value;$('imgOpacityVal').textContent=e.target.value+'%';updateSliderTrack(e.target);};
-$('wmImgSizeSlider').oninput=e=>{S.wmImgSize=+e.target.value;$('wmImgSizeVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
-$('imgSpacingSlider').oninput=e=>{S.imgSpacing=+e.target.value;$('imgSpacingVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
-$('imgAngleSlider').oninput=e=>{S.imgAngle=+e.target.value;$('imgAngleVal').textContent=e.target.value+'\u00B0';updateSliderTrack(e.target);};
-$('spacingSlider').oninput=e=>{S.spacing=+e.target.value;$('spacingVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
-$('blurSlider').oninput=e=>{S.blurRadius=+e.target.value;$('blurVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
-
-$('toggleBlur').onchange=e=>{S.blurEnabled=e.target.checked;
-  $('blurRow').style.opacity=e.target.checked?'1':'.35';
-  $('blurRow').style.pointerEvents=e.target.checked?'auto':'none';};
-
-$('fmtRow').onclick=e=>{const o=e.target.closest('.fmt-opt');if(!o)return;
-  $('fmtRow').querySelectorAll('.fmt-opt').forEach(x=>x.classList.remove('active'));
-  o.classList.add('active');S.format=o.dataset.fmt;};
-
-document.querySelectorAll('.slider').forEach(updateSliderTrack);
 loadModels();
 </script>
 </body>
