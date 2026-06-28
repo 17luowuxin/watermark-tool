@@ -477,7 +477,7 @@ async function loadModels(){
   let loaded=false;
   for(const base of urls){
     try{
-      await faceapi.nets.ssdMobilenetv1.loadFromUri(base);
+      await faceapi.nets.tinyFaceDetector.loadFromUri(base);
       await faceapi.nets.faceLandmark68Net.loadFromUri(base);
       S.modelsLoaded=true;loaded=true;break;
     }catch(e){console.warn('Model load failed from',base,e);}
@@ -496,7 +496,7 @@ async function loadModels(){
 function setStatus(t,ok){const el=$('status');el.textContent=t;el.className='topbar-sub'+(ok?' ok':'');}
 /* ===== Face Detection ===== */
 async function detectReal(img){
-  try{const d=await faceapi.detectAllFaces(img,new faceapi.SsdMobilenetv1Options({minConfidence:0.5})).withFaceLandmarks();return d.map(x=>{const b=x.detection.box;return{x:b.x,y:b.y,w:b.width,h:b.height};});}catch(e){return[];}
+  try{const d=await faceapi.detectAllFaces(img,new faceapi.TinyFaceDetectorOptions({inputSize:320,scoreThreshold:0.5})).withFaceLandmarks();return d.map(x=>{const b=x.detection.box;return{x:b.x,y:b.y,w:b.width,h:b.height};});}catch(e){return[];}
 }
 function detectAnime(img,canvas){
   const ctx=canvas.getContext('2d');const w=canvas.width=img.naturalWidth||img.width,h=canvas.height=img.naturalHeight||img.height;
