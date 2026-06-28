@@ -277,21 +277,12 @@ body{
       </div>
     </div>
 
-    <!-- Watermark -->
-    <div class="card">
-      <div class="tabs-label">水印类型</div>
-      <div class="wm-type-area" id="wmTypeArea">
-        <div class="wm-type-btn active" data-type="text">
-          <span class="wm-type-ico">Aa</span>
-          <span class="wm-type-label">文字水印</span>
-        </div>
-        <div class="wm-type-btn" data-type="image">
-          <span class="wm-type-ico">IMG</span>
-          <span class="wm-type-label">图片水印</span>
-        </div>
+    <!-- Text Watermark -->
+    <div class="card" id="textWmCard">
+      <div class="row">
+        <div><div class="row-label">文字水印</div></div>
+        <label class="toggle"><input type="checkbox" id="toggleTextWm" checked><div class="toggle-track"></div><div class="toggle-knob"></div></label>
       </div>
-
-      <!-- Text WM -->
       <div id="textWmSection">
         <input type="text" class="wm-input" id="wmText" placeholder="输入水印文字" value="[Love]">
 
@@ -305,9 +296,43 @@ body{
           <input type="color" class="color-input" id="wmColor" value="#000000">
           <span class="color-label">文字颜色</span>
         </div>
-      </div>
 
-      <!-- Image WM -->
+        <div class="slider-row">
+          <div class="slider-head"><span class="slider-title">不透明度</span><span class="slider-val" id="opacityVal">15%</span></div>
+          <input type="range" class="slider" id="opacitySlider" min="1" max="100" value="15">
+        </div>
+        <div class="slider-row">
+          <div class="slider-head"><span class="slider-title">字号</span><span class="slider-val" id="sizeVal">24px</span></div>
+          <input type="range" class="slider" id="sizeSlider" min="10" max="80" value="24">
+        </div>
+        <div class="slider-row">
+          <div class="slider-head"><span class="slider-title">旋转角度</span><span class="slider-val" id="angleVal">-25&deg;</span></div>
+          <input type="range" class="slider" id="angleSlider" min="-90" max="90" value="-25">
+        </div>
+        <div class="tabs-label">填充方式</div>
+        <div class="fill-row" id="fillRow">
+          <div class="fill-opt active" data-fill="tile">
+            <span class="fill-icon">&#9634;</span>
+            <span class="fill-label">平铺</span>
+          </div>
+          <div class="fill-opt" data-fill="center">
+            <span class="fill-icon">&#9679;</span>
+            <span class="fill-label">居中</span>
+          </div>
+          <div class="fill-opt" data-fill="stretch">
+            <span class="fill-icon">&#9645;</span>
+            <span class="fill-label">拉伸</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Watermark -->
+    <div class="card" id="imgWmCard">
+      <div class="row">
+        <div><div class="row-label">图片水印</div></div>
+        <label class="toggle"><input type="checkbox" id="toggleImgWm"><div class="toggle-track"></div><div class="toggle-knob"></div></label>
+      </div>
       <div id="imageWmSection" class="hidden">
         <div class="wm-img-zone" id="wmImgZone">
           <div class="wm-img-thumb" id="wmImgThumb">
@@ -320,51 +345,60 @@ body{
             <div class="wm-img-hint">支持 PNG（透明背景效果最佳）</div>
           </div>
         </div>
-      </div>
 
-      <div class="tabs-label">填充方式</div>
-      <div class="fill-row" id="fillRow">
-        <div class="fill-opt active" data-fill="tile">
-          <span class="fill-icon">&#9634;</span>
-          <span class="fill-label">平铺</span>
+        <div class="slider-row">
+          <div class="slider-head"><span class="slider-title">不透明度</span><span class="slider-val" id="imgOpacityVal">30%</span></div>
+          <input type="range" class="slider" id="imgOpacitySlider" min="1" max="100" value="30">
         </div>
-        <div class="fill-opt" data-fill="center">
-          <span class="fill-icon">&#9679;</span>
-          <span class="fill-label">居中</span>
+        <div class="slider-row">
+          <div class="slider-head"><span class="slider-title">图片尺寸</span><span class="slider-val" id="wmImgSizeVal">120px</span></div>
+          <input type="range" class="slider" id="wmImgSizeSlider" min="20" max="400" value="120">
         </div>
-        <div class="fill-opt" data-fill="stretch">
-          <span class="fill-icon">&#9645;</span>
-          <span class="fill-label">拉伸</span>
+        <div class="slider-row">
+          <div class="slider-head"><span class="slider-title">间距</span><span class="slider-val" id="imgSpacingVal">180px</span></div>
+          <input type="range" class="slider" id="imgSpacingSlider" min="40" max="600" value="180">
+        </div>
+        <div class="slider-row">
+          <div class="slider-head"><span class="slider-title">旋转角度</span><span class="slider-val" id="imgAngleVal">-25&deg;</span></div>
+          <input type="range" class="slider" id="imgAngleSlider" min="-90" max="90" value="-25">
+        </div>
+        <div class="tabs-label">填充方式</div>
+        <div class="fill-row" id="imgFillRow">
+          <div class="fill-opt active" data-fill="tile">
+            <span class="fill-icon">&#9634;</span>
+            <span class="fill-label">平铺</span>
+          </div>
+          <div class="fill-opt" data-fill="center">
+            <span class="fill-icon">&#9679;</span>
+            <span class="fill-label">居中</span>
+          </div>
+          <div class="fill-opt" data-fill="stretch">
+            <span class="fill-icon">&#9645;</span>
+            <span class="fill-label">拉伸</span>
+          </div>
+        </div>
+        <div class="tabs-label">混合模式</div>
+        <div class="tabs" id="imgBlendTabs">
+          <div class="tab active" data-blend="source-over">覆盖</div>
+          <div class="tab" data-blend="multiply">正片叠底</div>
+          <div class="tab" data-blend="screen">滤色</div>
+          <div class="tab" data-blend="overlay">叠加</div>
         </div>
       </div>
+    </div>
 
+    <!-- Shared -->
+    <div class="card">
+      <div class="slider-row">
+        <div class="slider-head"><span class="slider-title">通用间距</span><span class="slider-val" id="spacingVal">180px</span></div>
+        <input type="range" class="slider" id="spacingSlider" min="40" max="600" value="180">
+      </div>
       <div class="tabs-label">混合模式</div>
       <div class="tabs" id="blendTabs">
         <div class="tab active" data-blend="source-over">覆盖</div>
         <div class="tab" data-blend="multiply">正片叠底</div>
         <div class="tab" data-blend="screen">滤色</div>
         <div class="tab" data-blend="overlay">叠加</div>
-      </div>
-
-      <div class="slider-row">
-        <div class="slider-head"><span class="slider-title">不透明度</span><span class="slider-val" id="opacityVal">15%</span></div>
-        <input type="range" class="slider" id="opacitySlider" min="1" max="100" value="15">
-      </div>
-      <div class="slider-row" id="sizeRow">
-        <div class="slider-head"><span class="slider-title">字号</span><span class="slider-val" id="sizeVal">24px</span></div>
-        <input type="range" class="slider" id="sizeSlider" min="10" max="80" value="24">
-      </div>
-      <div class="slider-row" id="wmImgSizeRow" style="display:none">
-        <div class="slider-head"><span class="slider-title">图片尺寸</span><span class="slider-val" id="wmImgSizeVal">120px</span></div>
-        <input type="range" class="slider" id="wmImgSizeSlider" min="20" max="400" value="120">
-      </div>
-      <div class="slider-row" id="spacingRow">
-        <div class="slider-head"><span class="slider-title">间距</span><span class="slider-val" id="spacingVal">180px</span></div>
-        <input type="range" class="slider" id="spacingSlider" min="40" max="600" value="180">
-      </div>
-      <div class="slider-row">
-        <div class="slider-head"><span class="slider-title">旋转角度</span><span class="slider-val" id="angleVal">-25&deg;</span></div>
-        <input type="range" class="slider" id="angleSlider" min="-90" max="90" value="-25">
       </div>
     </div>
 
@@ -529,10 +563,13 @@ const EFFECTS = [
 /* ===== State ===== */
 const S = {
   images: [], faceEnabled: true, faceMode: 'auto',
-  wmType: 'text', wmText: '[Love]', wmImg: null, wmImgData: null,
-  fill: 'tile', blend: 'source-over',
+  textWmEnabled: true, imgWmEnabled: false,
+  wmText: '[Love]', wmImg: null, wmImgData: null,
+  textFill: 'tile', imgFill: 'tile', blend: 'source-over', imgBlend: 'source-over',
   font: FONTS[0], effect: EFFECTS[0], wmColor: '#000000',
-  opacity: 15, fontSize: 24, wmImgSize: 120, spacing: 180, angle: -25,
+  opacity: 15, fontSize: 24, angle: -25,
+  imgOpacity: 30, wmImgSize: 120, imgSpacing: 180, imgAngle: -25,
+  spacing: 180,
   blurEnabled: false, blurRadius: 8, format: 'png',
   modelsLoaded: false, processing: false, editingId: null
 };
@@ -639,14 +676,102 @@ function merge(f){
   }return r;
 }
 
-async function detectFaces(img) {
-  const mode=S.faceMode; let faces=[];
-  if(mode==='real'||mode==='auto'){faces=await detectReal(img);if(faces.length)return{faces,type:'real'};}
-  if(mode==='anime'||(mode==='auto'&&!faces.length)){
-    const c=document.createElement('canvas');faces=detectAnime(img,c);
-    if(faces.length)return{faces,type:'anime'};
+/* ===== EXIF Orientation ===== */
+async function getExifOrientation(blob) {
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const view = new DataView(e.target.result);
+      if (view.byteLength < 2 || view.getUint16(0, false) !== 0xFFD8) { resolve(1); return; }
+      let offset = 2, length = view.byteLength;
+      while (offset < length) {
+        if (offset + 2 > length) { resolve(1); return; }
+        const marker = view.getUint16(offset, false);
+        offset += 2;
+        if (marker === 0xFFE1) {
+          if (offset + 10 > length) { resolve(1); return; }
+          if (view.getUint32(offset + 2, false) !== 0x45786966) { resolve(1); return; }
+          const tiffStart = offset + 8;
+          if (tiffStart + 8 > length) { resolve(1); return; }
+          const bigEndian = view.getUint16(tiffStart, false) === 0x4D4D;
+          if (view.getUint16(tiffStart + 2, bigEndian) !== 0x002A) { resolve(1); return; }
+          const firstIFDOffset = view.getUint32(tiffStart + 4, bigEndian);
+          if (firstIFDOffset < 8) { resolve(1); return; }
+          const ifdStart = tiffStart + firstIFDOffset;
+          if (ifdStart + 2 > length) { resolve(1); return; }
+          const entries = view.getUint16(ifdStart, bigEndian);
+          for (let i = 0; i < entries; i++) {
+            const entryOffset = ifdStart + 2 + i * 12;
+            if (entryOffset + 12 > length) break;
+            if (view.getUint16(entryOffset, bigEndian) === 0x0112) {
+              resolve(view.getUint16(entryOffset + 8, bigEndian));
+              return;
+            }
+          }
+          resolve(1); return;
+        } else if ((marker & 0xFF00) !== 0xFF00) { resolve(1); return; }
+        else {
+          if (offset + 2 > length) { resolve(1); return; }
+          offset += view.getUint16(offset, false);
+        }
+      }
+      resolve(1);
+    };
+    reader.onerror = () => resolve(1);
+    reader.readAsArrayBuffer(blob.slice(0, 128 * 1024));
+  });
+}
+
+function drawOriented(canvas, img, orientation) {
+  const ctx = canvas.getContext('2d');
+  const w = img.naturalWidth || img.width;
+  const h = img.naturalHeight || img.height;
+  if (orientation && orientation > 1) {
+    const swap = orientation >= 5;
+    canvas.width = swap ? h : w;
+    canvas.height = swap ? w : h;
+    ctx.save();
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    switch (orientation) {
+      case 2: ctx.scale(-1, 1); break;
+      case 3: ctx.rotate(Math.PI); break;
+      case 4: ctx.scale(1, -1); break;
+      case 5: ctx.rotate(Math.PI / 2); ctx.scale(-1, 1); break;
+      case 6: ctx.rotate(Math.PI / 2); break;
+      case 7: ctx.rotate(-Math.PI / 2); ctx.scale(-1, 1); break;
+      case 8: ctx.rotate(-Math.PI / 2); break;
+    }
+    ctx.drawImage(img, -w / 2, -h / 2);
+    ctx.restore();
+  } else {
+    canvas.width = w; canvas.height = h;
+    ctx.drawImage(img, 0, 0);
   }
-  return{faces:[],type:'none'};
+}
+
+function getOrientedDims(img, orientation) {
+  const w = img.naturalWidth || img.width;
+  const h = img.naturalHeight || img.height;
+  if (orientation && orientation >= 5) return { w: h, h: w };
+  return { w, h };
+}
+
+async function detectFaces(img, orientation) {
+  // Create orientation-corrected canvas for detection
+  const detectCanvas = document.createElement('canvas');
+  drawOriented(detectCanvas, img, orientation);
+
+  const mode = S.faceMode; let faces = [];
+  if (mode === 'real' || mode === 'auto') {
+    faces = await detectReal(detectCanvas);
+    if (faces.length) return { faces, type: 'real' };
+  }
+  if (mode === 'anime' || (mode === 'auto' && !faces.length)) {
+    const animeCanvas = document.createElement('canvas');
+    faces = detectAnime(detectCanvas, animeCanvas);
+    if (faces.length) return { faces, type: 'anime' };
+  }
+  return { faces: [], type: 'none' };
 }
 
 /* ===== Text Effect Applier ===== */
@@ -762,39 +887,87 @@ function drawImageWM(wx, w, h, wmImg, op, imgSize, an, fill, spacing) {
 }
 
 function renderWM(canvas, img, faces, opts={}) {
-  const op=opts.opacity??S.opacity, an=opts.angle??S.angle,
-        fe=opts.faceEnabled??S.faceEnabled, fill=opts.fill??S.fill,
+  const orientation = opts.orientation || 1;
+  const dims = getOrientedDims(img, orientation);
+  const w = dims.w, h = dims.h;
+
+  // Text watermark params
+  const textEnabled = opts.textWmEnabled !== undefined ? opts.textWmEnabled : S.textWmEnabled;
+  const tOp=opts.opacity??S.opacity, tAn=opts.angle??S.angle,
+        tFill=opts.textFill??S.textFill??'tile',
+        wmText=opts.wmText??S.wmText,
+        fs=opts.fontSize??S.fontSize,
+        font=opts.font??S.font, effect=opts.effect??S.effect, wmColor=opts.wmColor??S.wmColor;
+
+  // Image watermark params
+  const imgEnabled = opts.imgWmEnabled !== undefined ? opts.imgWmEnabled : S.imgWmEnabled;
+  const iOp=opts.imgOpacity??S.imgOpacity, iAn=opts.imgAngle??S.imgAngle,
+        iFill=opts.imgFill??S.imgFill??'tile', iBlend=opts.imgBlend??S.imgBlend,
+        wmImg=opts.wmImg??S.wmImg, wmImgSize=opts.wmImgSize??S.wmImgSize,
+        iSpacing=opts.imgSpacing??S.imgSpacing;
+
+  const fe=opts.faceEnabled??S.faceEnabled,
         be=opts.blurEnabled??S.blurEnabled, br=opts.blurRadius??S.blurRadius,
-        blend=opts.blend??S.blend, wmType=opts.wmType??S.wmType,
-        wmText=opts.wmText??S.wmText, wmImg=opts.wmImg??S.wmImg,
-        fs=opts.fontSize??S.fontSize, wmImgSize=opts.wmImgSize??S.wmImgSize,
-        spacing=opts.spacing??S.spacing, font=opts.font??S.font,
-        effect=opts.effect??S.effect, wmColor=opts.wmColor??S.wmColor;
+        blend=opts.blend??S.blend, spacing=opts.spacing??S.spacing;
 
   const ctx=canvas.getContext('2d');
-  const w=canvas.width=img.naturalWidth||img.width, h=canvas.height=img.naturalHeight||img.height;
+  canvas.width=w; canvas.height=h;
 
-  if(be){ctx.filter=`blur(${br}px)`;ctx.drawImage(img,0,0,w,h);ctx.filter='none';}
-  else ctx.drawImage(img,0,0,w,h);
-
-  const wc=document.createElement('canvas');wc.width=w;wc.height=h;
-  const wx=wc.getContext('2d');
-
-  const renderOpts = {font, effect, wmColor, fontSize:fs};
-
-  if(wmType === 'image' && wmImg) {
-    drawImageWM(wx, w, h, wmImg, op, wmImgSize, an, fill, spacing);
+  // Draw base image with orientation correction
+  if (orientation > 1) {
+    drawOriented(canvas, img, orientation);
   } else {
-    drawTextWM(wx, w, h, wmText, op, fs, an, fill, renderOpts);
+    ctx.drawImage(img,0,0,w,h);
   }
 
-  if(blend !== 'source-over') ctx.globalCompositeOperation = blend;
-  ctx.drawImage(wc, 0, 0);
-  ctx.globalCompositeOperation = 'source-over';
+  // Apply blur if enabled
+  if(be){
+    const bc=document.createElement('canvas');bc.width=w;bc.height=h;
+    const bx=bc.getContext('2d');bx.filter=`blur(${br}px)`;bx.drawImage(canvas,0,0);bx.filter='none';
+    ctx.drawImage(bc,0,0);
+  }
 
+  // Draw text watermark
+  let textWmCanvas = null;
+  if(textEnabled) {
+    textWmCanvas=document.createElement('canvas');textWmCanvas.width=w;textWmCanvas.height=h;
+    const twx=textWmCanvas.getContext('2d');
+    const renderOpts = {font, effect, wmColor, fontSize:fs};
+    drawTextWM(twx, w, h, wmText, tOp, fs, tAn, tFill, renderOpts);
+  }
+
+  // Draw image watermark
+  let imgWmCanvas = null;
+  if(imgEnabled && wmImg) {
+    imgWmCanvas=document.createElement('canvas');imgWmCanvas.width=w;imgWmCanvas.height=h;
+    const iwx=imgWmCanvas.getContext('2d');
+    if(iBlend !== 'source-over') iwx.globalCompositeOperation = iBlend;
+    drawImageWM(iwx, w, h, wmImg, iOp, wmImgSize, iAn, iFill, iSpacing);
+    iwx.globalCompositeOperation = 'source-over';
+  }
+
+  // Composite watermarks onto main canvas
+  if(textWmCanvas) {
+    if(blend !== 'source-over') ctx.globalCompositeOperation = blend;
+    ctx.drawImage(textWmCanvas, 0, 0);
+    ctx.globalCompositeOperation = 'source-over';
+  }
+  if(imgWmCanvas) {
+    ctx.drawImage(imgWmCanvas, 0, 0);
+  }
+
+  // Face erasing - remove watermark from face areas
   if(fe && faces.length) {
+    // Build combined watermark layer for face erasing
+    const combinedWm = document.createElement('canvas');
+    combinedWm.width=w; combinedWm.height=h;
+    const cwx = combinedWm.getContext('2d');
+    if(textWmCanvas) cwx.drawImage(textWmCanvas, 0, 0);
+    if(imgWmCanvas) cwx.drawImage(imgWmCanvas, 0, 0);
+
     const mc=document.createElement('canvas');mc.width=w;mc.height=h;
-    const mx=mc.getContext('2d');mx.drawImage(wc,0,0);
+    const mx=mc.getContext('2d');
+    mx.drawImage(combinedWm,0,0);
     mx.globalCompositeOperation='destination-out';
     for(const f of faces){
       const cx=f.x+f.w/2,cy=f.y+f.h/2,rx=f.w*.75,ry=f.h*.85,mr=Math.max(rx,ry);
@@ -804,9 +977,25 @@ function renderWM(canvas, img, faces, opts={}) {
       mx.save();mx.translate(cx,cy);mx.scale(rx/mr,ry/mr);mx.translate(-cx,-cy);
       mx.fillStyle=gd;mx.fillRect(cx-mr*1.5,cy-mr*1.5,mr*3,mr*3);mx.restore();
     }
-    if(blend !== 'source-over') ctx.globalCompositeOperation = blend;
+
+    // Now re-composite: draw clean base image, then draw watermark with face holes
+    const cleanBase = document.createElement('canvas');
+    cleanBase.width=w; cleanBase.height=h;
+    const cbx = cleanBase.getContext('2d');
+    if(orientation > 1) {
+      drawOriented(cleanBase, img, orientation);
+    } else {
+      cbx.drawImage(img,0,0,w,h);
+    }
+
+    // The mask: where faces are, show clean base; elsewhere show watermark
+    // Strategy: draw clean base, then overlay watermark with face areas punched out
+    ctx.clearRect(0,0,w,h);
+    ctx.drawImage(cleanBase,0,0);
+    // Draw the watermarked version on top, but with face areas transparent
+    // We need: result = base + watermark * (1 - faceMask)
+    // mc already has watermark with face areas removed (destination-out)
     ctx.drawImage(mc,0,0);
-    ctx.globalCompositeOperation='source-over';
   }
   return canvas;
 }
@@ -824,7 +1013,8 @@ async function handleFiles(files){
   for(const f of imgs){
     const img=new Image();img.src=URL.createObjectURL(f);
     await new Promise(r=>img.onload=r);
-    S.images.push({id:++uid,file:f,img,name:f.name,faces:[],rendered:null});
+    const orientation = await getExifOrientation(f);
+    S.images.push({id:++uid,file:f,img,name:f.name,faces:[],rendered:null,orientation});
   }
   updateGrid();updateBtn();
 }
@@ -848,18 +1038,36 @@ function rmImg(id){S.images=S.images.filter(i=>i.id!==id);updateGrid();updateBtn
 window.rmImg=rmImg;
 function updateBtn(){$('btnExport').disabled=!S.images.length||S.processing;}
 
-/* ===== WM Type ===== */
-function setWmType(type) {
-  S.wmType = type;
-  document.querySelectorAll('#wmTypeArea .wm-type-btn').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll(`#wmTypeArea .wm-type-btn[data-type="${type}"]`).forEach(x=>x.classList.add('active'));
-  $('textWmSection').classList.toggle('hidden', type!=='text');
-  $('imageWmSection').classList.toggle('hidden', type!=='image');
-  $('sizeRow').style.display = type==='text'?'':'none';
-  $('wmImgSizeRow').style.display = type==='image'?'':'none';
-}
+/* ===== WM Type Toggles ===== */
+$('toggleTextWm').onchange = e => {
+  S.textWmEnabled = e.target.checked;
+  $('textWmSection').classList.toggle('hidden', !e.target.checked);
+};
+$('toggleImgWm').onchange = e => {
+  S.imgWmEnabled = e.target.checked;
+  $('imageWmSection').classList.toggle('hidden', !e.target.checked);
+};
 
-$('wmTypeArea').onclick=e=>{const t=e.target.closest('.wm-type-btn');if(!t)return;setWmType(t.dataset.type);};
+/* ===== Text Fill ===== */
+$('fillRow').onclick = e => {
+  const o = e.target.closest('.fill-opt'); if (!o) return;
+  $('fillRow').querySelectorAll('.fill-opt').forEach(x => x.classList.remove('active'));
+  o.classList.add('active'); S.textFill = o.dataset.fill;
+};
+
+/* ===== Image Fill ===== */
+$('imgFillRow').onclick = e => {
+  const o = e.target.closest('.fill-opt'); if (!o) return;
+  $('imgFillRow').querySelectorAll('.fill-opt').forEach(x => x.classList.remove('active'));
+  o.classList.add('active'); S.imgFill = o.dataset.fill;
+};
+
+/* ===== Image Blend ===== */
+$('imgBlendTabs').onclick = e => {
+  const t = e.target.closest('.tab'); if (!t) return;
+  $('imgBlendTabs').querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  t.classList.add('active'); S.imgBlend = t.dataset.blend;
+};
 
 /* ===== WM Image Upload ===== */
 $('wmImgZone').onclick=()=>{if(!S.wmImg)$('wmImgInput').click()};
@@ -889,15 +1097,6 @@ $('wmImgClear').onclick=e=>{
   $('wmImgClear').style.display='none';
   $('wmImgName').textContent='未选择水印图片';
 };
-
-/* ===== Fill & Blend ===== */
-$('fillRow').onclick=e=>{const o=e.target.closest('.fill-opt');if(!o)return;
-  $('fillRow').querySelectorAll('.fill-opt').forEach(x=>x.classList.remove('active'));
-  o.classList.add('active');S.fill=o.dataset.fill;};
-
-$('blendTabs').onclick=e=>{const t=e.target.closest('.tab');if(!t)return;
-  $('blendTabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');S.blend=t.dataset.blend;};
 
 /* ===== Color ===== */
 $('wmColor').oninput=e=>{S.wmColor=e.target.value;};
@@ -937,9 +1136,13 @@ function renderEditPreview(item){
     spacing:+$('editSpacingSlider').value,
     wmText:$('editWmText').value||'[Love]',
     faceEnabled:$('editToggleFace').checked,
-    wmType:S.wmType,wmImg:S.wmImg,wmImgSize:S.wmImgSize,
-    fill:S.fill,blend:S.blend,font:S.font,effect:S.effect,wmColor:S.wmColor,
-    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius
+    textWmEnabled:S.textWmEnabled, imgWmEnabled:S.imgWmEnabled,
+    textFill:S.textFill, imgFill:S.imgFill,
+    imgOpacity:S.imgOpacity, wmImg:S.wmImg, wmImgSize:S.wmImgSize,
+    imgAngle:S.imgAngle, imgSpacing:S.imgSpacing, imgBlend:S.imgBlend,
+    blend:S.blend,font:S.font,effect:S.effect,wmColor:S.wmColor,
+    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius,
+    orientation:item.orientation
   };
 
   const canvas=document.createElement('canvas');
@@ -958,7 +1161,8 @@ function renderEditPreview(item){
   $('editImg').onload=()=>{
     if(item.faces.length&&opts.faceEnabled){
       const iw=$('editImg').clientWidth,ih=$('editImg').clientHeight;
-      const nw=item.img.naturalWidth,nh=item.img.naturalHeight;
+      const dims=getOrientedDims(item.img,item.orientation);
+      const nw=dims.w,nh=dims.h;
       const scale=Math.min(iw/nw,ih/nh);
       const ox=(iw-nw*scale)/2,oy=(ih-nh*scale)/2;
       for(const f of item.faces){
@@ -1004,7 +1208,7 @@ $('editToggleFace').onchange=()=>{
 $('editRedetect').onclick=async()=>{
   const item=S.images.find(i=>i.id===S.editingId);if(!item)return;
   $('editStatus').textContent='检测中...';
-  const r=await detectFaces(item.img);item.faces=r.faces;renderEditPreview(item);
+  const r=await detectFaces(item.img,item.orientation);item.faces=r.faces;renderEditPreview(item);
 };
 
 $('editSave').onclick=()=>{
@@ -1013,9 +1217,13 @@ $('editSave').onclick=()=>{
     opacity:+$('editOpacitySlider').value,fontSize:+$('editSizeSlider').value,
     angle:+$('editAngleSlider').value,spacing:+$('editSpacingSlider').value,
     wmText:$('editWmText').value||'[Love]',faceEnabled:$('editToggleFace').checked,
-    wmType:S.wmType,wmImg:S.wmImg,wmImgSize:S.wmImgSize,
-    fill:S.fill,blend:S.blend,font:S.font,effect:S.effect,wmColor:S.wmColor,
-    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius
+    textWmEnabled:S.textWmEnabled, imgWmEnabled:S.imgWmEnabled,
+    textFill:S.textFill, imgFill:S.imgFill,
+    imgOpacity:S.imgOpacity, wmImg:S.wmImg, wmImgSize:S.wmImgSize,
+    imgAngle:S.imgAngle, imgSpacing:S.imgSpacing, imgBlend:S.imgBlend,
+    blend:S.blend,font:S.font,effect:S.effect,wmColor:S.wmColor,
+    blurEnabled:S.blurEnabled,blurRadius:S.blurRadius,
+    orientation:item.orientation
   };
   const c=document.createElement('canvas');renderWM(c,item.img,item.faces,opts);
   item.rendered=c.toDataURL(mimeMap[S.format],0.92);item._opts={...opts};
@@ -1028,9 +1236,9 @@ $('editSave').onclick=()=>{
 $('btnPreview').onclick=async()=>{
   if(!S.images.length)return;
   const item=S.images[0];setStatus('预览生成中...',false);
-  if(S.faceEnabled&&!item.faces.length){const r=await detectFaces(item.img);item.faces=r.faces;}
+  if(S.faceEnabled&&!item.faces.length){const r=await detectFaces(item.img,item.orientation);item.faces=r.faces;}
   const c=document.createElement('canvas');
-  renderWM(c,item.img,item.faces);
+  renderWM(c,item.img,item.faces,{orientation:item.orientation});
   window.open(c.toDataURL('image/png'),'_blank');
   setStatus('预览完成',true);
 };
@@ -1050,10 +1258,11 @@ $('btnExport').onclick=async()=>{
     const badge=document.getElementById(`gb-${item.id}`);
     if(badge){badge.textContent='检测中';badge.className='grid-badge detecting';}
 
-    if(S.faceEnabled&&!item.faces.length){const r=await detectFaces(item.img);item.faces=r.faces;}
+    if(S.faceEnabled&&!item.faces.length){const r=await detectFaces(item.img,item.orientation);item.faces=r.faces;}
     if(badge)badge.textContent='渲染中';
 
     const opts=item._opts||{};
+    opts.orientation=item.orientation;
     const c=document.createElement('canvas');
     renderWM(c,item.img,item.faces,opts);
 
@@ -1091,9 +1300,12 @@ function updateSliderTrack(s){
 
 $('opacitySlider').oninput=e=>{S.opacity=+e.target.value;$('opacityVal').textContent=e.target.value+'%';updateSliderTrack(e.target);};
 $('sizeSlider').oninput=e=>{S.fontSize=+e.target.value;$('sizeVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
-$('wmImgSizeSlider').oninput=e=>{S.wmImgSize=+e.target.value;$('wmImgSizeVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
-$('spacingSlider').oninput=e=>{S.spacing=+e.target.value;$('spacingVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
 $('angleSlider').oninput=e=>{S.angle=+e.target.value;$('angleVal').textContent=e.target.value+'\u00B0';updateSliderTrack(e.target);};
+$('imgOpacitySlider').oninput=e=>{S.imgOpacity=+e.target.value;$('imgOpacityVal').textContent=e.target.value+'%';updateSliderTrack(e.target);};
+$('wmImgSizeSlider').oninput=e=>{S.wmImgSize=+e.target.value;$('wmImgSizeVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
+$('imgSpacingSlider').oninput=e=>{S.imgSpacing=+e.target.value;$('imgSpacingVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
+$('imgAngleSlider').oninput=e=>{S.imgAngle=+e.target.value;$('imgAngleVal').textContent=e.target.value+'\u00B0';updateSliderTrack(e.target);};
+$('spacingSlider').oninput=e=>{S.spacing=+e.target.value;$('spacingVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
 $('blurSlider').oninput=e=>{S.blurRadius=+e.target.value;$('blurVal').textContent=e.target.value+'px';updateSliderTrack(e.target);};
 
 $('toggleBlur').onchange=e=>{S.blurEnabled=e.target.checked;
